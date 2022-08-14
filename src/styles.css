@@ -1,0 +1,35 @@
+.code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 3em;
+}
+
+.react-box {
+  height: 10em;
+  width: 10em;
+}
+
+.green-go {
+  background-color: green;
+}
+
+.pt-button {
+  background-color: lavender;
+}
