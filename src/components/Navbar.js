@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Navbar() {
 	const { currentUser } = useAuth()
-
+	
 	return (
 		<nav
 			style={{

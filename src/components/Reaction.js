@@ -25,7 +25,12 @@ export default function Reaction() {
 
 	const postScore = async () => {
 		// game, timer, score, user
-		await addDoc(scoresCollectionRef, { game: "Reaction.js", score: finalScore, user: currentUser ? currentUser.displayName : "Anonymous" });
+		await addDoc(scoresCollectionRef, { 
+			game: "Reaction.js", 
+			score: finalScore, 
+			user_id: currentUser.id, 
+			user: currentUser ? currentUser.displayName : "Anonymous", 
+		});
 	}
 	
 	useEffect(() => {

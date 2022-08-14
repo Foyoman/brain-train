@@ -23,7 +23,13 @@ const Typer = () => {
 
 	const postScore = async () => {
 		// game, timer, score, user
-		await addDoc(scoresCollectionRef, { game: "Proto-Type", timer: timer, score: wpm, user: currentUser ? currentUser.displayName : "Anonymous" });
+		await addDoc(scoresCollectionRef, {
+			game: "Proto-Type", 
+			timer: timer, 
+			score: wpm, 
+			user_id: currentUser.uid, 
+			user: currentUser ? currentUser.displayName : "Anonymous", 
+		});
 	}
 
 	useEffect(() => {
