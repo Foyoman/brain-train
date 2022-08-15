@@ -17,6 +17,7 @@ export default function Navbar() {
 			<Link to="/signup">Sign Up</Link> |{" "}
 			<Link to="/login">Log In</Link> |{" "}
 			<Link to="/proto-type">proto-type</Link> |{" "}
+			<Link to="/new-word">New Word</Link> |{" "}
 			<Link to="/reaction">reaction.js</Link> |{" "}
 			<Link to="/scores">scores</Link> |{" "}
 			{currentUser && currentUser.displayName}

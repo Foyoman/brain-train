@@ -12,6 +12,7 @@
     "firebase": "^9.9.2",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
+    "random-words": "^1.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dark-mode-toggle": "^0.2.0",
