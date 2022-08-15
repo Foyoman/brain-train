@@ -125,7 +125,7 @@ const Typer = () => {
 								<h4>high score: { highScore }</h4>
 						</div>
 						<form onSubmit={ _handleSubmit }>
-								<input type="text" autoFocus onChange={ _handleInput } value={ input } />
+								<input id="words-input" type="text" autoFocus onChange={ _handleInput } value={ input } />
 						</form>
 						<br />
 						<Button onClick={ reset }>reset</Button>
