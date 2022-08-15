@@ -25,8 +25,8 @@ export default function AimTrain() {
 	const [average, setAverage] = useState('😏');
 	const [clicks, setClicks] = useState(0);
 	const [correctClicks, setCorrectClicks] = useState(0);
-	const [topPos, setTopPos] = useState(0);
-	const [leftPos, setLeftPos] = useState(0);
+	const [topPos, setTopPos] = useState(242);
+	const [leftPos, setLeftPos] = useState(373);
 	const [accuracy, setAccuracy] = useState('💯');
 	const [start, setStart] = useState(false);
 	const [finalScore, setFinalScore] = useState(0);
@@ -136,8 +136,6 @@ export default function AimTrain() {
 		}
 	}
 
-
-
 	if (targets >= 15) { // can replace 15 with an option
 		setTargets(0);
 		let multiplyer = 0;
@@ -168,8 +166,8 @@ export default function AimTrain() {
 		setAverage('😏')
 		setClicks(0);
 		setCorrectClicks(0);
-		setTopPos(0);
-		setLeftPos(0);
+		setTopPos(242);
+		setLeftPos(373);
 		setAccuracy('💯');
 		setStart(false);
 		setFinalScore(0);
