@@ -17,6 +17,7 @@ import Reaction from "./components/Reaction"
 import NewWord from "./components/NewWord"
 import AimTrain from "./components/AimTrain"
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

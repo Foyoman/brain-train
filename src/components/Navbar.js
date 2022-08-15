@@ -16,8 +16,11 @@ export default function Navbar() {
 			<Link to="/dashboard">Dashboard</Link> |{" "}
 			<Link to="/signup">Sign Up</Link> |{" "}
 			<Link to="/login">Log In</Link> |{" "}
+
 			<Link to="/new-word">New Word</Link> |{" "}
+
 			<Link to="/proto-type">Proto-Type</Link> |{" "}
+			<Link to="/new-word">New Word</Link> |{" "}
 			<Link to="/reaction">Reaction.js</Link> |{" "}
 			<Link to="/aimtrain">Aim Train</Link> |{" "}
 			<Link to="/scores">Scoreboard</Link> |{" "}
