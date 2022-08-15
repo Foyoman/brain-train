@@ -117,7 +117,7 @@ const Typer = () => {
 					<Card.Body>
 						<h1>⌨️ Proto-Type</h1>
 						<br />
-						<h3 className={ style }>{quote}</h3>
+						<h3 className={ style }>{ quote }</h3>
 						<br />
 						<div className="stats">
 								<h4>time (seconds): { time }</h4>

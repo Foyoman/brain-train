@@ -33,3 +33,29 @@ input[type="text"] {
 .pt-button {
   background-color: lavender;
 }
+
+.target {
+  user-select: none;
+  cursor: default;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  max-width: 100px;
+  max-height: 100px;
+  background: white;
+  border: 20px solid red;
+  transform: 'translate(-50%, -50%)'
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

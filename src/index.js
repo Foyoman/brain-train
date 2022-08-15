@@ -14,6 +14,7 @@ import Typer from "./components/Typer"
 import Home from "./components/Home"
 import Scores from "./components/Scores"
 import Reaction from "./components/Reaction"
+import AimTrain from "./components/AimTrain"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -41,6 +42,7 @@ root.render(
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/proto-type" element={<Typer />} />
           <Route path="/reaction" element={<Reaction />} />
+          <Route path="/aimtrain" element={<AimTrain />} />
           <Route path="/scores" element={<Scores />} />
           <Route
             path="*"
