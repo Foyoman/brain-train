@@ -14,11 +14,9 @@ import Typer from "./components/Typer"
 import Home from "./components/Home"
 import Scores from "./components/Scores"
 import Reaction from "./components/Reaction"
-<<<<<<< HEAD
-import NewWord from "./components/NewWord"
-=======
 import AimTrain from "./components/AimTrain"
->>>>>>> 3d646899cf97c2f2093f4c2bde616ff5e646cd93
+import NewWord from "./components/NewWord"
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
