@@ -9,8 +9,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { useAuth } from '../contexts/AuthContext'
 
 export default function Reaction() {
-	const { currentUser } = useAuth()
-	const scoresCollectionRef = collection(db, "scores")
+	const { currentUser } = useAuth();
+	const scoresCollectionRef = collection(db, "scores");
 
 	const [time, setTime] = useState(0);
 	const [runningA, setRunningA] = useState(false);

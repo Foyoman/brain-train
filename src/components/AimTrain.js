@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Card, Button, Container } from 'react-bootstrap';
-import _, { random } from 'lodash';
+import _, { random, set } from 'lodash';
 import '../styles.css';
 import { db } from '../firebase'
 import { collection, addDoc } from "firebase/firestore";
@@ -9,6 +9,9 @@ import { useAuth } from '../contexts/AuthContext'
 import target from '../images/target.webp'
 
 export default function AimTrain() {
+	const { currentUser } = useAuth();
+	const scoresCollectionRef = collection(db, "scores");
+	
 	const [height, setHeight] = useState(0);
 	const [width, setWidth] = useState(0);
 	const [time, setTime] = useState(0);
@@ -25,13 +28,25 @@ export default function AimTrain() {
 	const [topPos, setTopPos] = useState(0);
 	const [leftPos, setLeftPos] = useState(0);
 	const [accuracy, setAccuracy] = useState('💯');
-	const [score, setScore] = useState('🏆');
 	const [start, setStart] = useState(false);
-
 	const [finalScore, setFinalScore] = useState(0);
+	const [targets, setTargets] = useState(0);
+	const [multiplier, setMultiplier] = useState(0);
 
 
 	const ref = useRef(null)
+
+	const postScore = async () => {
+		// game, timer, score, user
+		await addDoc(scoresCollectionRef, { 
+			game: "Aim Train", 
+			score: finalScore, 
+			average: average,
+			accuracy: Number(accuracy),
+			user_id: currentUser.uid, 
+			user: currentUser ? currentUser.displayName : "Anonymous", 
+		});
+	}
 
 	useEffect(() => {
 		let interval;
@@ -63,10 +78,6 @@ export default function AimTrain() {
 		setWidth(ref.current.clientWidth - 130);
 	}) // bug: position won't change if a user resizes their browser
 
-	const position = {
-
-	}
-
 	const randomPosition = {
 		position: 'relative',
 		top: topPos,
@@ -86,30 +97,15 @@ export default function AimTrain() {
 			setStart(true);
 
 			if (count > 1) {
+				setTargets(targets + 1)
 				setClicks(clicks + 1);
 				setCorrectClicks(correctClicks + 1);
 				setAccuracy(((correctClicks + 1) / (clicks + 1) * 100).toFixed(2))
 				if (((correctClicks + 1) / (clicks + 1) * 100).toFixed(2) == 100) {
-					setAccuracy('💯')
+					setAccuracy(100)
 				}
 			}
 		}
-		// setTopPos(_.random(0, height));
-		// setLeftPos(_.random(0, width));
-		// setDisplay('hide');
-		// setRunningA(true);
-		// setRunningB(true);
-		// setCount(count + 1);
-		// setStart(true);
-
-		// if (count > 1) {
-		// 	setClicks(clicks + 1);
-		// 	setCorrectClicks(correctClicks + 1);
-		// 	setAccuracy(((correctClicks + 1) / (clicks + 1) * 100).toFixed(2))
-		// 	if (((correctClicks + 1) / (clicks + 1) * 100).toFixed(2) == 100) {
-		// 		setAccuracy('💯')
-		// 	}
-		// }
 	}
 
 	const handleMisclick = () => {
@@ -117,14 +113,8 @@ export default function AimTrain() {
 			if (count > 1) {
 				setClicks(clicks + 1);
 				setAccuracy((correctClicks / (clicks + 1) * 100).toFixed(2))
-				setScore(Math.round(1000 * (((1000 - average) / 100) + 1) * (accuracy/100)));
 			}
 		}
-		// if (count > 1) {
-		// 	setClicks(clicks + 1);
-		// 	setAccuracy((correctClicks / (clicks + 1) * 100).toFixed(2))
-		// 	setScore(Math.round(1000 * (((1000 - average) / 100) + 1) * (accuracy/100)));
-		// }
 	}
 
 	if (time === 1) {
@@ -144,25 +134,51 @@ export default function AimTrain() {
 			
 			setDisplay('show');
 		}
-		// setTime(0);
-		// setRunningA(false);
-		// setStartTime(Date.now());
-		// setRunningB(false);
-		// if (count > 2) {
-		// 	setReactions([...reactions, Number(elapsed)]);
-		// 	setAverage(
-		// 		Math.round(_.reduce([...reactions, Number(elapsed)], function(memo, num) {
-		// 			return memo + num;
-		// 		}, 0) / (reactions.length + 1))
-		// 	)
-		// }
-		
-		// setDisplay('show');
 	}
 
-	if (correctClicks >= 15) { // can replace 15 with an option
+
+
+	if (targets >= 15) { // can replace 15 with an option
+		setTargets(0);
+		let multiplyer = 0;
+		let accuraci = 0;
+		if (average >= 1000) {
+			multiplyer = 1;
+		} else {
+			multiplyer = (((1000 - average) / 100) + 1);
+		}
+		if (Number(accuracy) == 100) {
+			accuraci = 1;
+		} else {
+			accuraci = accuracy/100;
+		}
+
+		setFinalScore(Math.round(1000 * multiplyer * accuraci));
+	}
+
+	const reset = () => {
+		setTime(0);
+		setRunningA(false);
+		setRunningB(false);
+		setStartTime(0);
+		setElapsed(0);
+		setDisplay('show');
+		setReactions([]);
+		setCount(1);
+		setAverage('😏')
+		setClicks(0);
 		setCorrectClicks(0);
-		setFinalScore(Math.round(1000 * (((1000 - average) / 100) + 1) * (accuracy/100)));
+		setTopPos(0);
+		setLeftPos(0);
+		setAccuracy('💯');
+		setStart(false);
+		setFinalScore(0);
+		setTargets(0);
+	}
+
+	const resultButton = () => {
+		reset();
+		postScore();
 	}
 
 	return (
@@ -170,23 +186,26 @@ export default function AimTrain() {
 			className="d-flex align-items-center justify-content-center"
 			style={{ minHeight: "20vh", marginTop: "1em" }}
 		>
-			<div className='w-100'>
+			<div className='w-100 text-center'>
 				<Card>
 					<Card.Body className='text-center'>
 						<h1>🎯 Aim Train 🚂</h1>
 						<div className='d-flex justify-content-between'>
-							<p>Accuracy: { accuracy }%</p>
-							<p>Count: { count }</p>
-							<p>Clicks: { clicks }</p>
+							<p>Accuracy: { accuracy === 100 ? "💯" : accuracy }%</p>
 							<p>Avg. Reaction Speed (ms): { average }</p>
 						</div>
 						<Card onMouseDown={ handleMisclick }>
 							<Card.Body ref={ ref } style={{ height: '70vh' }}>
 								{ finalScore ? 
 									<div className='d-flex align-items-center justify-content-center h-100'>
-										<div className='text-center btn btn-primary' style={{ padding: '1em' }}>
-											<h2>Score: { finalScore }</h2>
-											<ul>
+										<div 
+											onClick={ resultButton }
+											className='text-center btn btn-primary' 
+											style={{ padding: '1em' }}
+										>
+											<h2 className='mb-0'>Score: { finalScore }</h2>
+											<p className='mb-1' style={{fontSize: '20px'}}><strong>Click to log score</strong></p>
+											<ul className='mb-1'>
 												<li>Avg. reaction speed: { average }ms</li>
 												<li>Accuracy: { accuracy }%</li>
 											</ul>
@@ -209,20 +228,8 @@ export default function AimTrain() {
 					</Card.Body>
 					
 				</Card>
-				
-			</div>
-			<div className="score-card">
-				{/* TODO: show a scorecard when a user finishes a test */}
+				<Button onClick={ reset } className="text-center mb-5 mt-2 btn btn-danger" style={{ margin: '0 auto' }}>Reset</Button>
 			</div>
 		</Container>
 	)
 }
-
-
-// 1000 - 556 =  444
-// if average > 1000, don't apply score multiplier
-// setScore 1000 * ((1000 - 444) /1000) + 1)
-// 1000 * (((1000 - average) / 1000) + 1) * accuracy
-
-// 1000 - average 
-// 1000 * (((1000 - average) / 100) + 1) * (accuracy/100)
