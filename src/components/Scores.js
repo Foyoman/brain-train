@@ -35,6 +35,11 @@ export default function Scores() {
 		setSelected('Reaction.js');
 	}
 
+	const atScores = () => {
+		setGameScores(_.filter(scores, {game: 'Aim Train'}));
+		setSelected('Aim Train')
+	}
+
 	// debugger
 	// debugger
 
@@ -44,24 +49,33 @@ export default function Scores() {
 				className="d-flex align-items-center justify-content-center"
 				style={{ minHeight: "20vh", marginTop: "1em" }}
 		>
-			<div className='w-100' style={{ maxWidth: '600px' }}>
+			<div className='w-100' style={{ maxWidth: '800px' }}>
 				<Card>
 					<Card.Body>
 							{/* Filter: <Button onClick={ ptScores }>Proto-Type</Button> <Button onClick={ reactionScores }>Reaction.js</Button> */}
 						<ButtonGroup>
 							<Button onClick={ ptScores } variant={ selected === "Proto-Type" ? "primary" : "outline-primary" }>Proto-Type</Button> {" "}
 							<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button> {" "}
-							<Button variant={ selected === "New-Word" ? "primary" : "outline-primary" }>New Word</Button>
+							<Button onClick={ atScores } variant={ selected === "Aim Train" ? "primary" : "outline-primary" }>Aim Train</Button>
 						</ButtonGroup>
 						<Table className='mt-3'>
 							<thead>
 								<tr>
 									<th>👑</th>
 									<th>
-										{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? "WPM" : gameScores[0].game === "Reaction.js" ? "Time (ms)" : "" : "" 
+										{ gameScores[0] ? 
+												gameScores[0].game === "Proto-Type" ? 
+												"WPM" : 
+												gameScores[0].game === "Reaction.js" ? 
+												"Time" : 
+												gameScores[0].game === "Aim Train" ?
+												"Score" : ""
+											: "" 
 										}
 									</th>
 									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Timer (s)</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th>Avg. Speed</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th>Accuracy</th> : "" : "" }
 									<th>User</th>
 								</tr>
 							</thead>
@@ -70,8 +84,10 @@ export default function Scores() {
 									return (
 										<tr key={ score.id }>
 											<td>{ i + 1 }</td>
-											<td>{ score.score }</td>
-											{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <td>{ score.timer }</td> : "" : "" }
+											<td>{ score.score }{ gameScores[0] ? gameScores[0].game === "Reaction.js" ? "ms" : "" : "" }</td>
+											{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <td>{ score.timer }s</td> : "" : "" }
+											{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <td>{ score.average }ms</td> : "" : "" }
+											{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <td>{ score.accuracy }%</td> : "" : "" }
 											<td>{ score.user }</td>
 										</tr>
 									)

@@ -9,8 +9,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { useAuth } from '../contexts/AuthContext'
 
 export default function Reaction() {
-	const { currentUser } = useAuth()
-	const scoresCollectionRef = collection(db, "scores")
+	const { currentUser } = useAuth();
+	const scoresCollectionRef = collection(db, "scores");
 
 	const [time, setTime] = useState(0);
 	const [runningA, setRunningA] = useState(false);
@@ -18,7 +18,7 @@ export default function Reaction() {
 	const [gameState, setGameState] = useState('start');
 	const [startTime, setStartTime] = useState(0);
 	const [elapsed, setElapsed] = useState(0);
-	const [goTime, setGoTime] = useState(Math.floor(Math.random() * 8) + 3); // random number between 3 and 15
+	const [goTime, setGoTime] = useState(_.random(3, 10));
 	const [scores, setScores] = useState([]);
 	const [count, setCount] = useState(1);
 	const [finalScore, setFinalScore] = useState(0);
@@ -28,7 +28,7 @@ export default function Reaction() {
 		await addDoc(scoresCollectionRef, { 
 			game: "Reaction.js", 
 			score: finalScore, 
-			user_id: currentUser.id, 
+			user_id: currentUser.uid, 
 			user: currentUser ? currentUser.displayName : "Anonymous", 
 		});
 	}
@@ -65,7 +65,7 @@ export default function Reaction() {
 		setGameState('start');
 		setStartTime(0);
 		setElapsed(0);
-		setGoTime(Math.floor(Math.random() * 8) + 3);
+		setGoTime(_.random(3, 10));
 		setScores([]);
 		setCount(1);
 		setFinalScore(0);
@@ -82,7 +82,7 @@ export default function Reaction() {
 			setGameState('tooSoon');
 			setStartTime(0);
 			setElapsed(0);
-			setGoTime(Math.floor(Math.random() * 8) + 3)
+			setGoTime(_.random(3, 10))
 		}
 		if (gameState === 'tooSoon') {
 			setGameState('start');
@@ -95,7 +95,7 @@ export default function Reaction() {
 		if (gameState === 'result') {
 			setGameState('start');
 			setElapsed(0);
-			setGoTime(Math.floor(Math.random() * 8) + 3);
+			setGoTime(_.random(3, 10));
 			setCount(count + 1)
 		}
 		if (gameState === 'click' && count >= 3) {
@@ -108,13 +108,14 @@ export default function Reaction() {
 		}
 		if (gameState === 'finalResult') {
 			setGameState('start');
+			setCount(1);
 			postScore();
 		}
 	}
 
 	if (time === goTime) {
-		setTime(0)
-		setStartTime(Date.now())
+		setTime(0);
+		setStartTime(Date.now());
 		setGameState('click');
 		setRunningA(false);
 		setRunningB(true);
@@ -139,15 +140,23 @@ export default function Reaction() {
 								${gameState === "click" ? "btn-success" : ""}
 								${gameState === "result" || gameState === "finalResult" ? "btn-info" : ""}
 							`}
-							style={{ color: 'white', height: '500px', width: '500px', margin: '0 auto', fontSize: '36px', transition: 'none'}}	
-							onClick={ handleClick }
+							style={{ 
+								aspectRatio: 1/1,
+								color: 'white', 
+								height: '500px',
+								maxHeight: '500px', 
+								margin: '0 auto', 
+								fontSize: '36px', 
+								transition: 'none'
+							}}	
+							onMouseDown={ handleClick }
 						>
 							{ gameState === "start" ? "Start" : "" }
 							{ gameState === "wait" ? "wait..." : "" }
 							{ gameState === "tooSoon" ? "Too soon!" : "" }
 							{ gameState === "click" ? "Click!" : "" }
-							{ gameState === "result" ? `${elapsed}ms` : "" }
-							{ gameState === "finalResult" ? <div><p> Your average: { finalScore }ms</p><p style={{ fontSize: '24px' }}>Click to log score</p></div> : "" }
+							{ gameState === "result" ? <div><p>{elapsed}ms</p><p>Click to continue</p></div> : "" }
+							{ gameState === "finalResult" ? <div><p>Your average: { finalScore }ms</p><p style={{ fontSize: '24px' }}>Click to log score</p></div> : "" }
 						</Button>
 					</Card.Body>
 				</Card>
