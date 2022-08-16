@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles.css';
-import { Card, Container, Form, Button, Alert } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import '../styles.css'
+import { Card, Container, Button } from 'react-bootstrap'
 import _ from 'lodash';
 import { db } from '../firebase'
 import { collection, addDoc } from "firebase/firestore";

@@ -3,12 +3,20 @@
     monospace;
 }
 
+.blue {
+  color: #0d6efd;
+}
+
 .red {
-	color: red;
+	color: #dc3545;
 }
 
 .green {
-	color: green;
+	color: #157347;
+}
+
+.yellow {
+  color: #ffc720;
 }
 
 .stats {
@@ -58,4 +66,8 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+button {
+  cursor: default;
 }
