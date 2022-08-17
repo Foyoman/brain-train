@@ -38,7 +38,7 @@ export default function AimTrain() {
 			score: finalScore,
 			average: average,
 			accuracy: Number(accuracy),
-			user_id: currentUser.uid,
+			user_id: currentUser ? currentUser.uid : "" ,
 			user: currentUser ? currentUser.displayName : "Anonymous",
 		});
 	}
@@ -190,8 +190,7 @@ export default function AimTrain() {
 						<h1>🎯 Aim Train 🚂</h1>
 						<div className='d-flex justify-content-between'>
 							<p>Accuracy: {accuracy === 100 ? "💯" : accuracy}%</p>
-							<p>clicks {clicks}</p>
-							<p>correctclicks {correctClicks}</p>
+							<p>Targets: { 15 - correctClicks }</p>
 							<p>Avg. Reaction Speed (ms): {average}</p>
 						</div>
 						<Card onMouseDown={handleMisclick}>

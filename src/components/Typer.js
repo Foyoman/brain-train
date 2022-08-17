@@ -22,12 +22,11 @@ const Typer = () => {
 	const [highScore, setHighScore] = useState(0);
 
 	const postScore = async () => {
-		// game, timer, score, user
 		await addDoc(scoresCollectionRef, {
 			game: "Proto-Type", 
 			timer: timer, 
 			score: wpm, 
-			user_id: currentUser.uid, 
+			user_id: currentUser ? currentUser.uid : "" ,
 			user: currentUser ? currentUser.displayName : "Anonymous", 
 		});
 	}

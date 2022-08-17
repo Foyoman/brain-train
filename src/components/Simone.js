@@ -29,20 +29,18 @@ export default function Simone() {
 		await addDoc(scoresCollectionRef, { 
 			game: "Simone", 
 			score: finalScore, 
-			user_id: currentUser.uid, 
+			user_id: currentUser ? currentUser.uid : "" ,
 			user: currentUser ? currentUser.displayName : "Anonymous", 
 		});
 		setFinalScore(0);
 	}
 
 	const reset = () => {
-		// setGameState('start');
 		setSequence([]);
 		setTime(0);
 		setRunningA(false);
 		setRunningB(false);
 		setUserSequence([])
-		// setTurn('simone');
 	}
 
 	const hardReset = () => {
@@ -134,35 +132,32 @@ export default function Simone() {
 	}
 
 	const handleClick = (e) => {
-		if (!finalScore) {
-			blue.current.blur();
-			red.current.blur();
-			yellow.current.blur();
-			green.current.blur();
-			setUserSequence([...userSequence, e.target.value]);
-			if (JSON.stringify(sequence.slice(0, userSequence.length + 1)) == JSON.stringify([...userSequence, e.target.value])) {
-				console.log('winning')
+		blue.current.blur();
+		red.current.blur();
+		yellow.current.blur();
+		green.current.blur();
+		setUserSequence([...userSequence, e.target.value]);
+		if (JSON.stringify(sequence.slice(0, userSequence.length + 1)) == JSON.stringify([...userSequence, e.target.value])) {
+			console.log('winning')
+		} else {
+			console.log('losing, and game over')
+			setGameState('gameOver')
+			reset();
+			if (sequence.length === 3) {
+				setFinalScore(0);
 			} else {
-				console.log('losing, and game over')
-				setGameState('gameOver')
-				setFinalScore(sequence.length)
-				reset();
+				setFinalScore(sequence.length - 1)
 			}
-			if (sequence.length === userSequence.length + 1) {
-				if (JSON.stringify(sequence) == JSON.stringify([...userSequence, e.target.value])) {
-					console.log('won, and continue');
-					setTurn('simone');
-					setUserSequence([]);
-					setSequence([...sequence, _.sample(colors)]);
-					setRunningB(true);
-				} else {
-					console.log('lost, and game over');
-					setGameState('gameOver');
-					setFinalScore(sequence.length)
-					reset();
-				}
-			}
-		} 
+		}
+		if (sequence.length === userSequence.length + 1) {
+			if (JSON.stringify(sequence) == JSON.stringify([...userSequence, e.target.value])) {
+				console.log('won, and continue');
+				setTurn('simone');
+				setUserSequence([]);
+				setSequence([...sequence, _.sample(colors)]);
+				setRunningB(true);
+			} 
+		}
 	}
 	
 	const resetAndPost = () => {
@@ -170,20 +165,24 @@ export default function Simone() {
 		postScore();
 		setGameState('start');
 		setTurn('simone');
+		red.current.blur();
 	}
 
 	const resetGame = () => {
 		console.log('reset');
 		setGameState('start');
 		setTurn('simone');
+		yellow.current.blur();
 	}
+
+	const nothing = () => {}
 
 
 	// debugger
 	return (
 		<Container 
 				className="d-flex align-items-center justify-content-center"
-				style={{ minHeight: "20vh", marginTop: "1em" }}
+				style={{ minHeight: "20vh", marginTop: "1em", width: '600px' }}
 		>
 			<div className='w-100 text-center'>
 				<Card className='d-flex justify-content-center align-items-center'>
@@ -202,78 +201,84 @@ export default function Simone() {
 						>
 							{ gameState === "start" ? "Start" : "Reset"}
 						</Button>
-						<div className='d-flex justify-content-center align-items-center' style={{ minHeight: '70vh', maxHeight: '412px' }}>
-							<div style={{ transform: 'rotate(-45deg)', maxWidth: '412px' }}>
+						<div className='d-flex justify-content-center align-items-center' style={{ minHeight: '480px' }}>
+							<div style={{ transform: 'rotate(-45deg)', maxWidth: '408px', borderRadius: '100%' }}>
 								<Button 
-									onClick={ handleClick }
+									onClick={ gameState === "gameOver" ? nothing : handleClick }
 									ref={ blue }
 									value={ 'blue' }
 									variant={ gameState === 'gameOver' ? "dark" : "primary" }
 									style={{
 										height: '200px', 
 										width: '200px', 
-										margin: '3px',
+										margin: '2px',
 										cursor: `${ turn == 'simone' ? 'default' : 'pointer'}`,
-										pointerEvents: `${ turn == 'simone' ? 'none' : '' }`
+										pointerEvents: `${ turn == 'simone' ? 'none' : '' }`,
+										borderTopLeftRadius: '100%'
 									}}
 								>
-									<h1 style={{ transform: 'rotate(45deg)' }}>
+									<h2 style={{ transform: 'rotate(45deg)', textAlign: 'right' }}>
 										{ gameState === 'gameOver' ? "Game" : "" }
-									</h1>
+									</h2>
 								</Button>
 								<Button 
-									onClick={ gameState !== "gameOver" ? handleClick : resetAndPost }
+									onClick={ gameState === "gameOver" ? resetAndPost : handleClick }
 									ref={ red }
 									value={ 'red' }
 									variant={ gameState === 'gameOver' ? "dark" : "danger" }
 									style={{
 										height: '200px',
 										width: '200px', 
-										margin: '3px',
+										margin: '2px',
 										cursor: `${ turn == 'simone' ? 'default' : 'pointer'}`,
-										pointerEvents: `${ turn == 'simone' ? 'none' : '' }`
+										pointerEvents: `${ turn == 'simone' ? 'none' : '' }`,
+										borderTopRightRadius: '100%'
 									}}
 								>
 									{ gameState === 'gameOver' ?
 										<div style={{ transform: 'rotate(45deg)' }}>
-											<h2 className='mb-0'>Score: { finalScore }</h2>
+											<br />
+											<br />
+											<h3 className='mb-0'>Score: { finalScore }</h3>
 											<p className='mb-1'><strong>Click to log score</strong></p>
 										</div>
 									: "" }
 								</Button>
 								<Button 
-									onClick={ gameState !== "gameOver" ? handleClick : resetGame }
+									onClick={ gameState === "gameOver" ? resetGame : handleClick }
 									ref={ yellow }
 									value={ 'yellow' }
 									variant={ gameState === 'gameOver' ? "dark" : "warning" }
 									style={{
 										height: '200px',
 										width: '200px', 
-										margin: '3px',
+										margin: '2px',
 										cursor: `${ turn == 'simone' ? 'default' : 'pointer'}`,
-										pointerEvents: `${ turn == 'simone' ? 'none' : '' }`
+										pointerEvents: `${ turn == 'simone' ? 'none' : '' }`,
+										borderBottomLeftRadius: '100%'
 									}}
 								>
-									<h3 style={{ transform: 'rotate(45deg)' }}>
+									<h4 style={{ transform: 'rotate(45deg)', marginRight: '0', paddingRight: '0' }}>
 										{ gameState === 'gameOver' ? "Reset" : "" }
-									</h3>
+									</h4>
 								</Button>
 								<Button
-									onClick={ handleClick }
+									onClick={ gameState === "gameOver" ? nothing : handleClick }
 									ref={ green }
 									value={ 'green' }
 									variant={ gameState === 'gameOver' ? "dark" : "success" }
 									style={{
 										height: '200px',
 										width: '200px', 
-										margin: '3px',
+										margin: '2px',
 										cursor: `${ turn == 'simone' ? 'default' : 'pointer'}`,
-										pointerEvents: `${ turn == 'simone' ? 'none' : '' }`
+										pointerEvents: `${ turn == 'simone' ? 'none' : '' }`,
+										borderBottomRightRadius: '100%'
 									}}
 								>
-									<h1 style={{ transform: 'rotate(45deg)' }}>
+									<h2 style={{ transform: 'rotate(45deg)', textAlign: 'left' }}>
 										{ gameState === 'gameOver' ? "Over" : "" }
-									</h1>
+									</h2>
 								</Button>
 							</div>
 						</div>

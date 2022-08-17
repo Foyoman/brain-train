@@ -51,20 +51,19 @@ export default function Signup() {
 							{error && <Alert variant="danger">{error}</Alert>}
 							<Form onSubmit={handleSubmit}>
 								<Form.Group id="displayname">
-									<Form.Label>Username</Form.Label>
-									<Form.Control ref={displayNameRef} required />
+									<Form.Control ref={displayNameRef} required placeholder='Username' />
 								</Form.Group>
+								<br />
 								<Form.Group id="email">
-									<Form.Label>Email</Form.Label>
-									<Form.Control type="email" ref={emailRef} required />
+									<Form.Control type="email" ref={emailRef} required placeholder='Email' />
 								</Form.Group>
+								<br />
 								<Form.Group id="password">
-									<Form.Label>Password</Form.Label>
-									<Form.Control type="password" ref={passwordRef} required />
+									<Form.Control type="password" ref={passwordRef} required placeholder='Password' />
 								</Form.Group>
+								<br />
 								<Form.Group id="password-confirm">
-									<Form.Label>Password Confirmation</Form.Label>
-									<Form.Control type="password" ref={passwordConfirmRef} required />
+									<Form.Control type="password" ref={passwordConfirmRef} required placeholder='Password confirmation' />
 								</Form.Group>
 								<br />
 								<Button disabled={loading} className="w-100" type="submit">Sign Up</Button>

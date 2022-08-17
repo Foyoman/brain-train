@@ -46,7 +46,7 @@ root.render(
           <Route path="/proto-type" element={<Typer />} />
           <Route path="/new-word" element={<NewWord />} />
           <Route path="/reaction" element={<Reaction />} />
-          <Route path="/aimtrain" element={<AimTrain />} />
+          <Route path="/aim-train" element={<AimTrain />} />
           <Route path="/simone" element={<Simone />} />
           <Route path="/scores" element={<Scores />} />
           <Route

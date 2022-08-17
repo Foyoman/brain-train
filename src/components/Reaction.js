@@ -26,7 +26,7 @@ export default function Reaction() {
 		await addDoc(scoresCollectionRef, { 
 			game: "Reaction.js", 
 			score: finalScore, 
-			user_id: currentUser.uid, 
+			user_id: currentUser ? currentUser.uid : "" ,
 			user: currentUser ? currentUser.displayName : "Anonymous", 
 		});
 	}
