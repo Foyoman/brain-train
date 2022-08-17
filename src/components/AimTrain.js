@@ -3,14 +3,14 @@ import axios from 'axios';
 import { Card, Button, Container } from 'react-bootstrap';
 import _, { random, set } from 'lodash';
 import '../styles.css';
-import { db } from '../firebase'
-import { collection, addDoc } from "firebase/firestore";
-import { useAuth } from '../contexts/AuthContext'
+import { db } from '../firebase' // fetches the db
+import { collection, addDoc } from "firebase/firestore"; // fetches 'collections' from the db and 'addDoc' lets u add to it
+import { useAuth } from '../contexts/AuthContext' // gets the user - currentUser
 import target from '../images/target.webp'
 
 export default function AimTrain() {
-	const { currentUser } = useAuth();
-	const scoresCollectionRef = collection(db, "scores");
+	const { currentUser } = useAuth(); // sets the current user
+	const scoresCollectionRef = collection(db, "scores"); // gets the scores db
 	
 	const [height, setHeight] = useState(0);
 	const [width, setWidth] = useState(0);
@@ -36,15 +36,14 @@ export default function AimTrain() {
 
 	const ref = useRef(null)
 
-	const postScore = async () => {
-		// game, timer, score, user
+	const postScore = async () => { // adds scores to the db
 		await addDoc(scoresCollectionRef, { 
-			game: "Aim Train", 
-			score: finalScore, 
+			game: "Aim Train", // pls include name of game first
+			score: finalScore, // scores second
 			average: average,
 			accuracy: Number(accuracy),
-			user_id: currentUser.uid, 
-			user: currentUser ? currentUser.displayName : "Anonymous", 
+			user_id: currentUser.uid, // uid please
+			user: currentUser ? currentUser.displayName : "Anonymous", // these last two lines the same 
 		});
 	}
 
