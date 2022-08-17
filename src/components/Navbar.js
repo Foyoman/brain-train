@@ -24,6 +24,7 @@ export default function Navbar() {
 			<Link to="/reaction">Reaction.js</Link> |{" "}
 			<Link to="/aimtrain">Aim Train</Link> |{" "}
 			<Link to="/scores">Scoreboard</Link> |{" "}
+			<Link to="/simone">Simone</Link> |{" "}
 			{ currentUser ? currentUser.displayName : "" }
 		</nav>
 	)

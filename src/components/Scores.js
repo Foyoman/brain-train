@@ -37,7 +37,12 @@ export default function Scores() {
 
 	const atScores = () => {
 		setGameScores(_.filter(scores, {game: 'Aim Train'}));
-		setSelected('Aim Train')
+		setSelected('Aim Train');
+	}
+
+	const simoneScores = () => {
+		setGameScores(_.filter(scores, {game: 'Simone'}));
+		setSelected('Simone');
 	}
 
 	// debugger
@@ -57,6 +62,7 @@ export default function Scores() {
 							<Button onClick={ ptScores } variant={ selected === "Proto-Type" ? "primary" : "outline-primary" }>Proto-Type</Button> {" "}
 							<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button> {" "}
 							<Button onClick={ atScores } variant={ selected === "Aim Train" ? "primary" : "outline-primary" }>Aim Train</Button>
+							<Button onClick={ simoneScores } variant={ selected === "Simone" ? "primary" : "outline-primary" }>Simone</Button>
 						</ButtonGroup>
 						<Table className='mt-3'>
 							<thead>
@@ -68,7 +74,7 @@ export default function Scores() {
 												"WPM" : 
 												gameScores[0].game === "Reaction.js" ? 
 												"Time" : 
-												gameScores[0].game === "Aim Train" ?
+												gameScores[0].game === "Aim Train" || "Simone" ?
 												"Score" : ""
 											: "" 
 										}
