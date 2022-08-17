@@ -218,7 +218,7 @@ export default function AimTrain() {
 										className={`target ${display} d-flex justify-content-center align-items-center`}
 										style={gameRunning ? randomPosition : centered}
 									>
-										<strong className='red'>
+										<strong className='red target-center'>
 											{gameRunning ? "+" : "START"}
 										</strong>
 									</div>
