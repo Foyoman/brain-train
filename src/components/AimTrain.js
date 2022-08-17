@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Card, Button, Container } from 'react-bootstrap';
 import _ from 'lodash';
 import '../styles.css';
+
 import { db } from '../firebase'
 import { collection, addDoc } from "firebase/firestore";
 import { AuthProvider, useAuth } from '../contexts/AuthContext'
@@ -9,6 +10,7 @@ import { AuthProvider, useAuth } from '../contexts/AuthContext'
 export default function AimTrain() {
 	const { currentUser } = useAuth();
 	const scoresCollectionRef = collection(db, "scores");
+
 
 	const [height, setHeight] = useState(0);
 	const [width, setWidth] = useState(0);
@@ -32,6 +34,16 @@ export default function AimTrain() {
 
 	const ref = useRef(null)
 
+<<<<<<< HEAD
+	const postScore = async () => { // adds scores to the db
+		await addDoc(scoresCollectionRef, { 
+			game: "Aim Train", // pls include name of game first
+			score: finalScore, // scores second
+			average: average,
+			accuracy: Number(accuracy),
+			user_id: currentUser.uid, // uid please
+			user: currentUser ? currentUser.displayName : "Anonymous", // these last two lines the same 
+=======
 	const postScore = async () => {
 		await addDoc(scoresCollectionRef, {
 			game: "Aim Train",
@@ -40,6 +52,7 @@ export default function AimTrain() {
 			accuracy: Number(accuracy),
 			user_id: currentUser ? currentUser.uid : "" ,
 			user: currentUser ? currentUser.displayName : "Anonymous",
+>>>>>>> 27b656f8469445ab9ac0344ec91ea53d9c15283a
 		});
 	}
 
