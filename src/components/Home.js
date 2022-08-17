@@ -1,19 +1,60 @@
-import React from 'react'
-import { Container, Button } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Container, Card, Button, Table } from 'react-bootstrap'
 import '../styles.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { db } from '../firebase'
+import { collection, getDocs } from 'firebase/firestore'
+import _ from 'lodash'
 
 export default function Home() {
-	const navigate = useNavigate()
+	const scoresCollectionRef = collection(db, "scores");
+	const [aimTrainScore, setAimTrainScore] = useState('Loading...');
+	const [protoTypeScore, setProtoTypeScore] = useState('Loading...');
+	const [reactionScore, setReactionScore] = useState('Loading...');
+	const [simoneScore, setSimonsScore] = useState('Loading...');
 
+	const [aimTrainUser, setAimTrainUser] = useState('Loading...');
+	const [protoTypeUser, setProtoTypeUser] = useState('Loading...');
+	const [reactionUser, setReactionUser] = useState('Loading...');
+	const [simoneUser, setSimonsUser] = useState('Loading...');
+	
+ 
+	useEffect(() => {
+		// promise; async
+
+		const getScores = async () => {
+			const response = await getDocs(scoresCollectionRef);
+			let sorted = _.sortBy((response.docs.map((doc) => ({ ...doc.data(), id: doc.id }))), 'score').reverse();
+			let atScore = _.filter(sorted, {game: 'Aim Train'})
+			setAimTrainUser(atScore[0].user)
+			setAimTrainScore(atScore[0].score)
+			let ptScore = _.filter(sorted, {game: 'Proto-Type'})
+			setProtoTypeUser(ptScore[0].user)
+			setProtoTypeScore(ptScore[0].score)
+			let reactScore = _.filter(sorted.reverse(), {game: 'Reaction.js'})
+			setReactionUser(reactScore[0].user)
+			setReactionScore(reactScore[0].score)
+			let smneScore = _.filter(sorted.reverse(), {game: 'Simone'})
+			setSimonsUser(smneScore[0].user)
+			setSimonsScore(smneScore[0].score)
+		};
+		getScores();
+	}, [])
+	
+	// debugger
+	
 	return (
 		<div>
 			<header>
-				<h1>Games!</h1>
-				<p style={{ fontSize: '24px' }}>Welcome to Brain Train! The hub for the daily mental exercise every brain needs.</p>
+				<div id="header">
+					<h1>Games!</h1>
+					<p style={{ fontSize: '24px' }}>Welcome to Brain Train! The hub for the daily mental exercise every brain needs.</p>
+				</div>
 			</header>
 			<Container className='mt-4 mb-5' style={{ maxWidth: '931px' }}>
-				<div style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+
+				
+				<div style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'space-between' }}>
 
 					<Link to='/simone'>
 						<Button
@@ -66,6 +107,46 @@ export default function Home() {
 							</div>
 						</Button>
 					</Link>
+				</div>
+				<br />
+				<br />
+				<div className='w-100'>
+					<Card>
+						<Card.Body>
+							<h2>All-Time Leaders</h2>
+							<Table className='mt-3'>
+								<thead>
+									<tr>
+										<th>👑</th>
+										<th>Game</th>
+										<th>Score</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>{ aimTrainUser }</td>
+										<td>Aim Train</td>
+										<td>{ aimTrainScore }</td>
+									</tr>
+									<tr>
+										<td>{ protoTypeUser }</td>
+										<td>Proto-Type</td>
+										<td>{ protoTypeScore }wpm</td>
+									</tr>
+									<tr>
+										<td>{ reactionUser }</td>
+										<td>Reaction.js</td>
+										<td>{ reactionScore }ms</td>
+									</tr>
+									<tr>
+										<td>{ simoneUser }</td>
+										<td>Simone</td>
+										<td>{ simoneScore }</td>
+									</tr>
+								</tbody>
+							</Table>
+						</Card.Body>
+					</Card>
 				</div>
 		</Container>
 	</div>

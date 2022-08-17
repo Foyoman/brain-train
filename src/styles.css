@@ -73,7 +73,7 @@ ul {
 }
 
 .game {
-  background: none;
+  background: white;
   height: 300px; 
   margin: 0.2em 0.1em;
   background-image: center;
@@ -118,12 +118,15 @@ a {
 }
 
 #aim-train {
-  width: 569px;
+  width: 600px;
   background-image: url(./images/aim-train.png);
+  background-color: white;
 }
 
 #aim-train:hover {
   background-image: url(./images/aim-train.gif);
+  background-repeat: no-repeat;
+
 }
 
 .caption {
@@ -132,24 +135,38 @@ a {
 }
 
 #simone {
-  width: 289px;
   background-image: url(./images/simone.png);
+  background-color: white;
+
 }
 
 #simone:hover {
   background-image: url(./images/simone.gif);
+  background-repeat: no-repeat;
+
 }
 
 #proto-type {
-  width: 569px;
+  width: 600px;
 }
 
 header {
+  background-image: url(./images/wallpaper.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200px;
+  background-color: #0d6efd;
+  color: white;
+}
+
+#header {
+  text-align: center;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  background-color: #0d6efd;
-  color: white;
+  background: linear-gradient(-10deg, #00000060 60%, #ffffff44 100%);
 }

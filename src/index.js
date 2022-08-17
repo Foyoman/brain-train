@@ -12,7 +12,7 @@ import ForgotPassword from "./components/ForgotPassword"
 import UpdateProfile from "./components/UpdateProfile"
 import Typer from "./components/Typer"
 import Home from "./components/Home"
-import Scores from "./components/Scores"
+import Scoreboard from "./components/Scoreboard"
 import Reaction from "./components/Reaction"
 import NewWord from "./components/NewWord"
 import AimTrain from "./components/AimTrain"
@@ -48,7 +48,7 @@ root.render(
           <Route path="/reaction" element={<Reaction />} />
           <Route path="/aim-train" element={<AimTrain />} />
           <Route path="/simone" element={<Simone />} />
-          <Route path="/scores" element={<Scores />} />
+          <Route path="/scoreboard" element={<Scoreboard />} />
           <Route
             path="*"
             element={

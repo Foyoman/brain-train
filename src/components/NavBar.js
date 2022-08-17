@@ -20,11 +20,8 @@ export default function NavBar() {
 			bg="dark"
 			variant="dark"
 			sticky='top'
-			style={{ 
-				display: 'flex', 
-				justifyContent: 'space-between' ,
-				padding: '0.3em 1em'
-			}}
+			expand='lg'
+			style={{ padding: '0.3em 1em' }}
 		>
 			<Link to='/' style={{ textDecoration: 'none' }}>
 				<Navbar.Brand>
@@ -32,18 +29,30 @@ export default function NavBar() {
 				</Navbar.Brand>
 			</Link>
 
-			<Nav>
-				<NavDropdown title="Games">
-					<NavDropdown.Item href="/aim-train">Aim Train</NavDropdown.Item>
-					<NavDropdown.Item href="/proto-type">Proto-Type</NavDropdown.Item>
-					<NavDropdown.Item href="/reaction">Reaction.js</NavDropdown.Item>
-					<NavDropdown.Item href="/simone">Simone</NavDropdown.Item>
-				</NavDropdown>
-				{ !currentUser && <Nav.Link href="/signup">Sign Up</Nav.Link> }
-				{ !currentUser && <Nav.Link href="/login">Log In</Nav.Link> }
-				{ currentUser && <Nav.Link href="/dashboard">{ currentUser.displayName }</Nav.Link> }
-				{ currentUser && <Nav.Link onClick={ handleLogout }>Log Out</Nav.Link> }
-			</Nav>
+			<Navbar.Toggle />
+
+			<Navbar.Collapse>
+				<Nav
+					style={{
+						width: '100%',
+						display: 'flex',
+						justifyContent: 'flex-end'
+					}}
+				>
+					<NavDropdown title="Games">
+						<NavDropdown.Item href="/aim-train">Aim Train</NavDropdown.Item>
+						<NavDropdown.Item href="/proto-type">Proto-Type</NavDropdown.Item>
+						<NavDropdown.Item href="/reaction">Reaction.js</NavDropdown.Item>
+						<NavDropdown.Item href="/simone">Simone</NavDropdown.Item>
+					</NavDropdown>
+					<Nav.Link href='/scoreboard'>Scoreboard</Nav.Link>
+					{ !currentUser && <Nav.Link href="/signup">Sign Up</Nav.Link> }
+					{ !currentUser && <Nav.Link href="/login">Log In</Nav.Link> }
+					{ currentUser && <Nav.Link href="/dashboard">{ currentUser.displayName }</Nav.Link> }
+					{ currentUser && <Nav.Link onClick={ handleLogout }>Log Out</Nav.Link> }
+				</Nav>
+			</Navbar.Collapse>
+
 
 		</Navbar>
 	)
