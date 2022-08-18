@@ -228,7 +228,7 @@ const NewWord = () => {
     }
 
     return (
-        <Container id="container " className="justify-content-center">
+        <Container id="container col-lg-6 " className="justify-content-center">
             <Card >   
                 <Container id="inner-container">
                 <h1 className="TwoEm">New Word</h1>
