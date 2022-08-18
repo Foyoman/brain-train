@@ -45,6 +45,11 @@ export default function Scoreboard() {
 		setSelected('Simone');
 	}
 
+	const newWordScores = () => {
+		setGameScores(_.filter(scores, {game: 'New Word'}));
+		setSelected('New Word');
+	}
+
 	// debugger
 	// debugger
 
@@ -63,6 +68,7 @@ export default function Scoreboard() {
 							<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button> {" "}
 							<Button onClick={ atScores } variant={ selected === "Aim Train" ? "primary" : "outline-primary" }>Aim Train</Button>
 							<Button onClick={ simoneScores } variant={ selected === "Simone" ? "primary" : "outline-primary" }>Simone</Button>
+							<Button onClick={ newWordScores } variant={ selected === "New Word" ? "primary" : "outline-primary" }>NewWord</Button>
 						</ButtonGroup>
 						<Table className='mt-3'>
 							<thead>
@@ -74,7 +80,7 @@ export default function Scoreboard() {
 												"WPM" : 
 												gameScores[0].game === "Reaction.js" ? 
 												"Time" : 
-												gameScores[0].game === "Aim Train" || "Simone" ?
+												gameScores[0].game === "Aim Train" || "Simone" || "New Word" ?
 												"Score" : ""
 											: "" 
 										}
