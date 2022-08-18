@@ -163,11 +163,3 @@ export default function Reaction() {
 		</Container>
 	)
 }
-
-// cycling through maybe 5 different buttons, users are prompted to click as soon as they see a certain symbol, let's call it 'react'
-// click to start. setStart('true')
-// cycle through the different buttons at random 2 seconds at a time
-// maybe an easy mode that's just like human benchmark
-
-// ${gameState === "click" ? "btn-success" : ""}
-

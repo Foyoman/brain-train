@@ -19,11 +19,21 @@ export default function Simone() {
 	const [pause, setPause] = useState(false);
 	const [turn, setTurn] = useState('simone');
 	const [finalScore, setFinalScore] = useState(0);
+	const [flashSpeed, setFlashSpeed] = useState(250);
 	
 	const blue = useRef(null);
 	const red = useRef(null);
 	const yellow = useRef(null);
 	const green = useRef(null);
+
+	const yellowRe = new Audio('/re.wav')
+	yellowRe.playbackRate = 4
+	const blueMi = new Audio('/mi.wav')
+	blueMi.playbackRate = 4
+	const greenFa = new Audio('/fa.wav')
+	greenFa.playbackRate = 4
+	const redSol = new Audio('/sol.wav')
+	redSol.playbackRate = 4
 
 	const postScore = async () => {
 		await addDoc(scoresCollectionRef, { 
@@ -80,32 +90,44 @@ export default function Simone() {
 					setRunningB(false);
 					setTurn('user');
 					blue.current.blur();
+					blueMi.load();
 					red.current.blur();
+					redSol.load();
 					yellow.current.blur();
+					yellowRe.load();
 					green.current.blur();
+					greenFa.load();
 				} else if (j % 2 === 0) {
 					blue.current.blur();
+					blueMi.load();
 					red.current.blur();
+					redSol.load();
 					yellow.current.blur();
+					yellowRe.load();
 					green.current.blur();
+					greenFa.load();
 					j++;
 				} else if (j % 2 !== 0) {
 					if (sequence[i] === "blue") {
 						blue.current.focus();
+						blueMi.play();
 					}
 					if (sequence[i] === "red") {
 						red.current.focus();
+						redSol.play();
 					}
 					if (sequence[i] === "yellow") {
 						yellow.current.focus();
+						yellowRe.play();
 					}
 					if (sequence[i] === "green") {
 						green.current.focus();
+						greenFa.play();
 					}
 					i++;
 					j++;
 				} 
-			}, 250); 
+			}, flashSpeed); 
 		} else if (!runningB) {
 			clearInterval(interval);
 		}
@@ -132,10 +154,34 @@ export default function Simone() {
 	}
 
 	const handleClick = (e) => {
+		if (sequence.length >= 6) {
+			setFlashSpeed(200);
+		}
+		if (sequence.length >= 9) {
+			setFlashSpeed(150);
+		}
+		if (sequence.length >= 12) {
+			setFlashSpeed(100);
+		}
+
 		blue.current.blur();
 		red.current.blur();
 		yellow.current.blur();
 		green.current.blur();
+
+		if (e.target.value === 'blue') {
+			blueMi.play();
+		} else if (e.target.value === 'red') {
+			redSol.play();
+		} else if (e.target.value === 'yellow') {
+			yellowRe.play();
+		} else if (e.target.value === 'green') {
+			greenFa.play();
+		}
+		
+		
+		
+		
 		setUserSequence([...userSequence, e.target.value]);
 		if (JSON.stringify(sequence.slice(0, userSequence.length + 1)) == JSON.stringify([...userSequence, e.target.value])) {
 			console.log('winning')

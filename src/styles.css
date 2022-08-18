@@ -159,6 +159,14 @@ a {
 
 #proto-type {
   width: 600px;
+  background-image: url(./images/proto-type.png);
+  background-color: white;
+  background-repeat: no-repeat;
+}
+
+#proto-type:hover {
+  background-image: url(./images/proto-type.gif);
+  background-repeat: no-repeat;
 }
 
 header {
@@ -215,12 +223,12 @@ header {
 
 .opaque {
   box-sizing: border-box;
-  border-right: 2px solid black;
-  margin-right: -2px;
+  border-left: 2px solid black;
+  margin-left: -2px;
 }
 
 .transparent {
-  border-right: 0px;
+  border-left: 0px;
 }
 
 #words-input {
@@ -231,6 +239,11 @@ header {
   outline: none;
   display: block;
 }
+
+.restOfWordQuote {
+  color: grey;
+}
+
 
 /* #caret {
   width: 2px;

@@ -10,7 +10,7 @@ import Login from "./components/Login"
 import PrivateRoute from "./components/PrivateRoute"
 import ForgotPassword from "./components/ForgotPassword"
 import UpdateProfile from "./components/UpdateProfile"
-import Typer from "./components/Typer"
+import ProtoType from "./components/ProtoType"
 import Home from "./components/Home"
 import Scoreboard from "./components/Scoreboard"
 import Reaction from "./components/Reaction"
@@ -43,7 +43,7 @@ root.render(
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/proto-type" element={<Typer />} />
+          <Route path="/proto-type" element={<ProtoType />} />
           <Route path="/new-word" element={<NewWord />} />
           <Route path="/reaction" element={<Reaction />} />
           <Route path="/aim-train" element={<AimTrain />} />

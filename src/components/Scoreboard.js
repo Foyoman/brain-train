@@ -8,6 +8,7 @@ export default function Scoreboard() {
 	const [scores, setScores] = useState([]);
 	const [gameScores, setGameScores] = useState([]);
 	const [selected, setSelected] = useState('Aim Train');
+	const [selectedWords, setSelectedWords] = useState(25)
 
 	const scoresCollectionRef = collection(db, "scores");
 
@@ -25,6 +26,7 @@ export default function Scoreboard() {
 	const ptScores = () => {
 		setGameScores(_.filter(scores, {game: 'Proto-Type'}));
 		setSelected('Proto-Type');
+		setSelectedWords(25)
 	}
 
 	const reactionScores = () => {
@@ -42,8 +44,20 @@ export default function Scoreboard() {
 		setSelected('Simone');
 	}
 
-	// debugger
-	// debugger
+	const twentyFive = () => {
+		setGameScores(_.filter(scores, {words: 25}));
+		setSelectedWords(25);
+	}
+
+	const fifty = () => {
+		setGameScores(_.filter(scores, {words: 50}));
+		setSelectedWords(50);
+	}
+
+	const hundred = () => {
+		setGameScores(_.filter(scores, {words: 100}));
+		setSelectedWords(100);
+	}
 
 
 	return (
@@ -54,12 +68,22 @@ export default function Scoreboard() {
 			<div className='w-100' style={{ maxWidth: '800px' }}>
 				<Card>
 					<Card.Body>
-						<ButtonGroup>
-							<Button onClick={ atScores } variant={ selected === "Aim Train" ? "primary" : "outline-primary" }>Aim Train</Button>
-							<Button onClick={ ptScores } variant={ selected === "Proto-Type" ? "primary" : "outline-primary" }>Proto-Type</Button>
-							<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button>
-							<Button onClick={ simoneScores } variant={ selected === "Simone" ? "primary" : "outline-primary" }>Simone</Button>
-						</ButtonGroup>
+						<div className='d-flex' style={{ justifyContent: 'space-between' }}>
+							<ButtonGroup>
+								<Button onClick={ atScores } variant={ selected === "Aim Train" ? "primary" : "outline-primary" } style={{ borderRight: '1px' }} >Aim Train</Button>
+								<Button onClick={ ptScores } variant={ selected === "Proto-Type" ? "primary" : "outline-primary" }>Proto-Type</Button>
+								<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button>
+								<Button onClick={ simoneScores } variant={ selected === "Simone" ? "primary" : "outline-primary" } style={{ borderLeft: '1px' }}>Simone</Button>
+							</ButtonGroup>
+
+							{ selected === "Proto-Type" ? 
+								<ButtonGroup>
+									<Button onClick={ twentyFive } variant={ selectedWords === 25 ? "primary" : "outline-primary" } style={{ borderRight: '1px' }} >25</Button>
+									<Button onClick={ fifty } variant={ selectedWords === 50 ? "primary" : "outline-primary" }>50</Button>
+									<Button onClick={ hundred } variant={ selectedWords === 100 ? "primary" : "outline-primary" } style={{ borderLeft: '1px' }}>100</Button>
+								</ButtonGroup>
+							: "" }
+						</div>
 						<Table className='mt-3'>
 							<thead>
 								<tr>
@@ -75,7 +99,9 @@ export default function Scoreboard() {
 											: "" 
 										}
 									</th>
-									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Timer (s)</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Accuracy</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Time</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Words</th> : "" : "" }
 									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th className='no-display-mobile'>Avg. Speed</th> : "" : "" }
 									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th  className='no-display-mobile'>Accuracy</th> : "" : "" }
 									<th>User</th>
@@ -92,7 +118,17 @@ export default function Scoreboard() {
 											</td>
 											{ gameScores[0] ? 
 												gameScores[0].game === "Proto-Type" ? 
-												<td>{ score.timer }s</td> : 
+												<td>{ score.accuracy }%</td> : 
+												"" : "" 
+											}
+											{ gameScores[0] ? 
+												gameScores[0].game === "Proto-Type" ? 
+												<td className='no-display-mobile'>{ score.time }s</td> : 
+												"" : "" 
+											}
+											{ gameScores[0] ? 
+												gameScores[0].game === "Proto-Type" ? 
+												<td className='no-display-mobile'>{ score.words }</td> : 
 												"" : "" 
 											}
 											{ gameScores[0] ? 
