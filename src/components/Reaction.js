@@ -122,7 +122,7 @@ export default function Reaction() {
 	return (
 		<Container 
 				className="d-flex align-items-center justify-content-center"
-				style={{ minHeight: "20vh", marginTop: "1em" }}
+				style={{ minHeight: "20vh", marginTop: "2em" }}
 		>
 			<div className='w-100 text-center' style={{ maxWidth: '550px' }}>
 				<Card className='d-flex justify-content-center align-items-center'>
@@ -131,7 +131,7 @@ export default function Reaction() {
 						<h3>{ count }/3</h3>
 						<Button
 							className={`
-								btn-lg mt-1 mb-1
+								reaction btn-lg mt-1 mb-1
 								${gameState === "start" ? "btn-primary" : ""} 
 								${gameState === "wait" ? "btn-dark" : ""}
 								${gameState === "tooSoon" ? "btn-warning" : ""} 

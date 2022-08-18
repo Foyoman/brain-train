@@ -182,7 +182,7 @@ export default function Simone() {
 	return (
 		<Container 
 				className="d-flex align-items-center justify-content-center"
-				style={{ minHeight: "20vh", marginTop: "1em", width: '600px' }}
+				style={{ minHeight: "20vh", marginTop: "3em", maxWidth: '600px' }}
 		>
 			<div className='w-100 text-center'>
 				<Card className='d-flex justify-content-center align-items-center'>
@@ -201,13 +201,14 @@ export default function Simone() {
 						>
 							{ gameState === "start" ? "Start" : "Reset"}
 						</Button>
-						<div className='d-flex justify-content-center align-items-center' style={{ minHeight: '480px' }}>
-							<div style={{ transform: 'rotate(-45deg)', maxWidth: '408px', borderRadius: '100%' }}>
+						<div className='simone-container d-flex justify-content-center align-items-center' style={{ minHeight: '480px' }}>
+							<div className='simone-circle' style={{ borderRadius: '50%', transform: 'rotate(-45deg)' }}>
 								<Button 
 									onClick={ gameState === "gameOver" ? nothing : handleClick }
 									ref={ blue }
 									value={ 'blue' }
 									variant={ gameState === 'gameOver' ? "dark" : "primary" }
+									className="quadrant"
 									style={{
 										height: '200px', 
 										width: '200px', 
@@ -226,6 +227,7 @@ export default function Simone() {
 									ref={ red }
 									value={ 'red' }
 									variant={ gameState === 'gameOver' ? "dark" : "danger" }
+									className="quadrant"
 									style={{
 										height: '200px',
 										width: '200px', 
@@ -249,6 +251,7 @@ export default function Simone() {
 									ref={ yellow }
 									value={ 'yellow' }
 									variant={ gameState === 'gameOver' ? "dark" : "warning" }
+									className="quadrant"
 									style={{
 										height: '200px',
 										width: '200px', 
@@ -267,6 +270,7 @@ export default function Simone() {
 									ref={ green }
 									value={ 'green' }
 									variant={ gameState === 'gameOver' ? "dark" : "success" }
+									className="quadrant"
 									style={{
 										height: '200px',
 										width: '200px', 
@@ -282,7 +286,7 @@ export default function Simone() {
 								</Button>
 							</div>
 						</div>
-						</Card.Body>
+					</Card.Body>
 				</Card>
 			</div>
 		</Container>

@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { Container } from "react-bootstrap"
+import React from "react"
 import { Outlet } from "react-router-dom"
 import Nav from "./NavBar"
 

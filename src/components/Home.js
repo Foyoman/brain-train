@@ -53,14 +53,20 @@ export default function Home() {
 			<header>
 				<div id="header">
 					<h1>Games!</h1>
-					<p style={{ fontSize: '24px' }}>Welcome to Brain Train! The hub for the daily mental exercise every brain needs.</p>
+					<p>Welcome to Brain Train! Your hub for the daily mental exercise your brain needs.</p>
 				</div>
 			</header>
 			<Container className='mt-4 mb-5' style={{ maxWidth: '931px' }}>
 
-				
-				<div style={{ display: 'inline-flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'space-between' }}>
-
+				<div 
+					className='games'
+					style={{
+						display: 'inline-flex', 
+						flexWrap: 'wrap', 
+						justifyContent: 'space-between', 
+						alignItems: 'space-between' 
+					}}
+				>
 					<Link to='/simone'>
 						<Button
 							id='simone'
@@ -168,6 +174,9 @@ export default function Home() {
 									</tr>
 								</tbody>
 							</Table>
+							<Link to='/scoreboard'>
+								<Button>See more</Button>
+							</Link>
 						</Card.Body>
 					</Card>
 				</div>

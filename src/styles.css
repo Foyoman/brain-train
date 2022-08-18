@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+:root {
+  --main-color: #eee;
+  --sub-color: #444;
+  --bg-color: #111;
+  --caret-color: #fff;
+  --active-word-color: #444;
+  --roundness: 0.25rem;
+}
+
 .code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -169,4 +180,141 @@ header {
   justify-content: center;
   align-items: center;
   background: linear-gradient(-10deg, #00000060 60%, #ffffff44 100%);
+}
+
+#header > p {
+  font-size: 24px;
+}
+
+@keyframes caretFlash {
+  0% {
+    background: transparent;
+  }
+  50% {
+    background: var(--caret-color);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+#caret {
+  width: 2px;
+  height: 1.5rem;
+  background: black;
+  display: inline !important;
+  padding: 0;
+  margin: 50px;
+  /* position: relative; */
+  /* transition: 0.05s; */
+}
+
+.inline {
+  display: inline !important;
+}
+
+.opaque {
+  box-sizing: border-box;
+  border-right: 2px solid black;
+  margin-right: -2px;
+}
+
+.transparent {
+  border-right: 0px;
+}
+
+#words-input {
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  display: block;
+}
+
+/* #caret {
+  width: 2px;
+  height: 1.5rem;
+  background: var(--caret-color);
+  animation-name: caretFlash;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  position: absolute;
+  transition: 0.05s;
+} */
+
+.hidden {
+  display: none !important;
+}
+
+.quote {
+  text-align: justify;
+  font-family: 'Roboto Mono', monospace;;
+  font-weight: 550;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .App {
+    max-width: 600px !important;
+  }
+
+  .games {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .target {
+    width: 60px;
+    height: 60px;
+    border: 10px solid red;
+  }
+
+  .target-center {
+    font-size: 10px;
+  }
+
+  .reaction {
+    height: 300px !important;
+    width: 300px;
+  }
+
+  .what {
+    max-width: 250px;
+  }
+  .simone-container {
+    max-height: 400px !important;
+  }
+  .simone-circle {
+    position: relative;
+    max-width: 400px !important;
+    max-height: 400px;
+    margin: 0;
+    border-radius: 50% !important;
+  }
+
+  .quadrant {
+    height: 140px !important;
+    width: 140px !important;
+  }
+
+  #header > p {
+    font-size: 16px;
+    padding: 0 2em;
+  }
+
+  #aim-train {
+    width: 300px;
+    background-repeat: no-repeat;
+  }
+
+  #proto-type {
+    width: 300px;
+    background-repeat: no-repeat;
+  }
+
+  .no-display-mobile {
+    display: none !important;
+  }
 }

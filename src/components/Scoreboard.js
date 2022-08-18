@@ -7,22 +7,19 @@ import _ from 'lodash';
 export default function Scoreboard() {
 	const [scores, setScores] = useState([]);
 	const [gameScores, setGameScores] = useState([]);
-	const [selected, setSelected] = useState('Proto-Type');
+	const [selected, setSelected] = useState('Aim Train');
 
 	const scoresCollectionRef = collection(db, "scores");
 
 	useEffect(() => {
 		// promise; async
-
 		const getScores = async () => {
 			const response = await getDocs(scoresCollectionRef);
 			let sorted = _.sortBy((response.docs.map((doc) => ({ ...doc.data(), id: doc.id }))), 'score').reverse();
 			setScores(sorted);
-			setGameScores(_.filter(sorted, { game:'Proto-Type' }));
+			setGameScores(_.filter(sorted, { game:'Aim Train' }));
 		};
-		// setGameScores(_.filter(scores, {game: 'Proto-Type'}));
 		getScores();
-		// setGame( scores[0].game )
 	}, [])
 
 	const ptScores = () => {
@@ -62,11 +59,10 @@ export default function Scoreboard() {
 			<div className='w-100' style={{ maxWidth: '800px' }}>
 				<Card>
 					<Card.Body>
-							{/* Filter: <Button onClick={ ptScores }>Proto-Type</Button> <Button onClick={ reactionScores }>Reaction.js</Button> */}
 						<ButtonGroup>
-							<Button onClick={ ptScores } variant={ selected === "Proto-Type" ? "primary" : "outline-primary" }>Proto-Type</Button> {" "}
-							<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button> {" "}
 							<Button onClick={ atScores } variant={ selected === "Aim Train" ? "primary" : "outline-primary" }>Aim Train</Button>
+							<Button onClick={ ptScores } variant={ selected === "Proto-Type" ? "primary" : "outline-primary" }>Proto-Type</Button>
+							<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button>
 							<Button onClick={ simoneScores } variant={ selected === "Simone" ? "primary" : "outline-primary" }>Simone</Button>
 							<Button onClick={ newWordScores } variant={ selected === "New Word" ? "primary" : "outline-primary" }>NewWord</Button>
 						</ButtonGroup>
@@ -86,8 +82,8 @@ export default function Scoreboard() {
 										}
 									</th>
 									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Timer (s)</th> : "" : "" }
-									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th>Avg. Speed</th> : "" : "" }
-									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th>Accuracy</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th className='no-display-mobile'>Avg. Speed</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th  className='no-display-mobile'>Accuracy</th> : "" : "" }
 									<th>User</th>
 								</tr>
 							</thead>
@@ -96,10 +92,25 @@ export default function Scoreboard() {
 									return (
 										<tr key={ score.id }>
 											<td>{ i + 1 }</td>
-											<td>{ score.score }{ gameScores[0] ? gameScores[0].game === "Reaction.js" ? "ms" : "" : "" }</td>
-											{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <td>{ score.timer }s</td> : "" : "" }
-											{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <td>{ score.average }ms</td> : "" : "" }
-											{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <td>{ score.accuracy }%</td> : "" : "" }
+											<td>
+												{ score.score }
+												{ gameScores[0] ? gameScores[0].game === "Reaction.js" ? "ms" : "" : "" }
+											</td>
+											{ gameScores[0] ? 
+												gameScores[0].game === "Proto-Type" ? 
+												<td>{ score.timer }s</td> : 
+												"" : "" 
+											}
+											{ gameScores[0] ? 
+												gameScores[0].game === "Aim Train" ? 
+												<td className='no-display-mobile'>{ score.average }ms</td> : 
+												"" : "" 
+											}
+											{ gameScores[0] ? 
+												gameScores[0].game === "Aim Train" ? 
+												<td className='no-display-mobile'>{ score.accuracy }%</td> : 
+												"" : "" 
+											}
 											<td>{ score.user }</td>
 										</tr>
 									)
