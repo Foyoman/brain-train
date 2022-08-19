@@ -44,6 +44,7 @@ export default function NavBar() {
 						<NavDropdown.Item href="/proto-type">Proto-Type</NavDropdown.Item>
 						<NavDropdown.Item href="/reaction">Reaction.js</NavDropdown.Item>
 						<NavDropdown.Item href="/simone">Simone</NavDropdown.Item>
+						<NavDropdown.Item href="/new-word">New Word</NavDropdown.Item>
 					</NavDropdown>
 					<Nav.Link href='/scoreboard'>Scoreboard</Nav.Link>
 					{ !currentUser && <Nav.Link href="/signup">Sign Up</Nav.Link> }

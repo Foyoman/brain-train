@@ -16,7 +16,6 @@ const NewWord = () => {
     const [finalScore, setFinalScore ] = useState(0);
     const [start, setStart] = useState('Start');
     const [wordAlreadyEntered, setRepeatedWord] = useState('');
-    const [allWords, setAllWordsTyped] = useState('');
     const [phText, setPlaceHolderText] = useState('');
     const [isDisabled, setDisabled] = useState(false);
     const [level, setLevelUp] = useState(0);
@@ -26,7 +25,7 @@ const NewWord = () => {
     const [collectionOfWordsTyped, setCollectionOfWords] = useState(['']);
     const [errorMessage, setErrorMessage] = useState('');
     const [GameOver, setGameOver] = useState('');
-    const [inputField, setInputEmpty] = useState('');
+
 
     //==========================================================================================================
 
@@ -45,7 +44,7 @@ const NewWord = () => {
     const _handleStart = (e) => {
         e.preventDefault();
         restart(e);
-        // TEST: console.log(e.target.value)
+        // console.log('TEST'e.target.value)
     }
 
     const restart = () => {
@@ -54,7 +53,6 @@ const NewWord = () => {
         setErrorMessage('');
         setPlaceHolderText('');
         setRepeatedWord('');
-        setAllWordsTyped('');
         setFinalScore();
         setTime(10);
         setTimeLeft(false);
@@ -87,7 +85,7 @@ const NewWord = () => {
             axios(`https://api.dictionaryapi.dev/api/v2/entries/en/${enteredWord}`).then((response) => { // This part is actually just checking if the word exists in the database
                 if( response.data[0].word && !collectionOfWordsTyped.includes(enteredWord) ){ // If a word is returned 
                     // fetchWord(); // This orders a new word every time you press enter, we dont want that, but im keeping incase someone does
-                    // TEST: console.log(collectionOfWordsTyped)
+                    //  console.log('TEST:'collectionOfWordsTyped)
                     addLevel()
                     setWord(enteredWord);
                     setCollectionOfWords([...collectionOfWordsTyped, enteredWord] );
@@ -108,19 +106,7 @@ const NewWord = () => {
 
     //=========================================================================================================================
 
-    // const wordRepeated = (theNewWordEntered) => {
-    //     if( collectionOfWordsTyped.includes(theNewWordEntered)){
-    //         // let found = collectionOfWordsTyped.find(words => words === theNewWordEntered)
-    //         // console.log(found)
-    //         console.log(collectionOfWordsTyped.indexOf(theNewWordEntered))
-    //         console.log('TEST: for repeated')
-    //         setRepeatedWord('You Already Entered this word!')
-    //         removeLevel()
-    //         setFinalScore(finalScore)
-    //         collectionOfWordsTyped.pop()
-    //     }
-    // }
-
+    
     //==========================================================================================================================
 
     const increaseLevel = (numberOfWords) => {
@@ -153,11 +139,6 @@ const NewWord = () => {
         setTime(10);
     }
 
-    const removeLevel = () => {
-        return setLevelUp(level-1);
-        
-    }
-
     const addLevel = () => {
         return setLevelUp(level+1);
     }
@@ -175,7 +156,6 @@ const NewWord = () => {
     
     const _showWords = (e) => {
         e.preventDefault();
-        return setAllWordsTyped(collectionOfWordsTyped.length);
     }
 
     //=================================================================================
@@ -191,7 +171,6 @@ const NewWord = () => {
             setStart('Retry');
             setRepeatedWord('');
             setErrorMessage('');
-            //checkForText(e.target.value)
          } else {
             console.log(`SECOND: ERROR TEST: Word must begin with a ${currentWordLastLetter}`);
             setTimeLeft(true);
@@ -228,9 +207,8 @@ const NewWord = () => {
         setCollectionOfWords(['']);
         
     }
-    //console.log(finalScore);
+    //console.log('TEST:'finalScore);
 
-    
     //=========================================================================================================
 
     const Word = () => {
@@ -250,7 +228,7 @@ const NewWord = () => {
     }
 
     return (
-        <Container id="container" className="justify-content-center">
+        <Container id="container col-lg-6 " className="justify-content-center mt-4">
             <Card >   
                 <Container id="inner-container">
                 <h1 className="TwoEm">New Word</h1>
@@ -263,7 +241,7 @@ const NewWord = () => {
                 <div className="moveBtnDisplayUp">
                     <form onSubmit={ _showWords }>
                         <button className='btn '>{collectionOfWordsTyped.length - 1}</button>
-                        <p>{collectionOfWordsTyped + ' | '}</p>
+                        <p>{collectionOfWordsTyped + ''}</p>
                     </form>
                     { finalScore ? <button className="btn btn-warning OneFiveEm " onClick={ evaluateResult }> Log Score <p>{finalScore}</p></button>  : '' }
                 </div>

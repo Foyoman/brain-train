@@ -12,11 +12,13 @@ export default function Home() {
 	const [protoTypeScore, setProtoTypeScore] = useState('Loading...');
 	const [reactionScore, setReactionScore] = useState('Loading...');
 	const [simoneScore, setSimonsScore] = useState('Loading...');
+	const [newWordScore, setNewWordScore] = useState('Loading...');
 
 	const [aimTrainUser, setAimTrainUser] = useState('Loading...');
 	const [protoTypeUser, setProtoTypeUser] = useState('Loading...');
 	const [reactionUser, setReactionUser] = useState('Loading...');
 	const [simoneUser, setSimonsUser] = useState('Loading...');
+	const [newWordUser, setNewWordUser] = useState('Loading...');
 	
  
 	useEffect(() => {
@@ -37,6 +39,9 @@ export default function Home() {
 			let smneScore = _.filter(sorted.reverse(), {game: 'Simone'})
 			setSimonsUser(smneScore[0].user)
 			setSimonsScore(smneScore[0].score)
+			let nWScore = _.filter(sorted, {game: "New Word"})
+			setNewWordScore(nWScore[0].score)
+			setNewWordUser(nWScore[0].user)
 		};
 		getScores();
 	}, [])
@@ -113,6 +118,19 @@ export default function Home() {
 							</div>
 						</Button>
 					</Link>
+
+					<Link to="/NewWord">
+						<Button 
+						id='NewWord'
+						variant="dark"
+						className="game square"
+						>
+						<div className='game-caption square'>
+							<h3 style={{ margin: '0'}}><strong>New Word</strong></h3>
+							<p className='caption'>Become quick-witted</p>
+						</div>
+						</Button>
+					</Link>
 				</div>
 				<br />
 				<br />
@@ -148,6 +166,11 @@ export default function Home() {
 										<td>{ simoneUser }</td>
 										<td>Simone</td>
 										<td>{ simoneScore }</td>
+									</tr>
+									<tr>
+										<td>{ newWordUser }</td>
+										<td>New Word</td>
+										<td>{ newWordScore }words</td>
 									</tr>
 								</tbody>
 							</Table>
