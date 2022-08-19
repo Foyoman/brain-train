@@ -109,9 +109,6 @@ const ProtoType = () => {
 
 	const _handleSubmit = (e) => {
 		e.preventDefault();
-		setRunningA(false);  
-		setInput(''); 
-		fetchQuote();
 	}
 
 	const _handleInput = (e) => {
@@ -122,7 +119,7 @@ const ProtoType = () => {
 		const ultimateWordInput = e.target.value;
 		const ultimateWordQuote = quoteByWord[currentWordQuoteIndex]
 
-		if (!input) {
+		if (!rawInput) {
 			setStartTime(Date.now());
 			setRunningC(true);
 		}
@@ -166,6 +163,7 @@ const ProtoType = () => {
 
 				if (words === rawInput.split(' ').length) {
 					setGameState('results');
+					setRunningC(false)
 					setAccuracy((chars / strokes * 100).toFixed(2))
 				}
 			}

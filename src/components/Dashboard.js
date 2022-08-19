@@ -71,22 +71,22 @@ export default function Dashboard() {
 					<tbody>
 						<tr>
 							<td>Aim Train</td>
-							<td><strong>{ aimTrainScore.score }</strong>, { aimTrainScore.average }ms, { aimTrainScore.accuracy }%</td>
+							<td><strong>{ aimTrainScore ? `${aimTrainScore.score},` : '' }</strong> { aimTrainScore ? `${aimTrainScore.average}ms,` : 'N/A' } { aimTrainScore ? `${aimTrainScore.accuracy}%` : '' }</td>
 						</tr>
 						<tr>
 							
 							<td>Proto-Type</td>
-							<td>{ protoTypeScore.score }wpm</td>
+							<td>{ protoTypeScore ? `${protoTypeScore.score}wpm` : 'N/A' }</td>
 						</tr>
 						<tr>
 							
 							<td>Reaction.js</td>
-							<td>{ reactionScore.score }ms</td>
+							<td>{ reactionScore ? `${reactionScore.score}ms` : 'N/A' }</td>
 						</tr>
 						<tr>
 							
 							<td>Simone</td>
-							<td>{ simoneScore.score }</td>
+							<td>{ simoneScore ? simoneScore.score : 'N/A' }</td>
 						</tr>
 					</tbody>
 				</Table>

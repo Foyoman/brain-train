@@ -8,7 +8,7 @@ export default function Scoreboard() {
 	const [scores, setScores] = useState([]);
 	const [gameScores, setGameScores] = useState([]);
 	const [selected, setSelected] = useState('Aim Train');
-	const [selectedWords, setSelectedWords] = useState(25)
+	const [selectedWords, setSelectedWords] = useState('all')
 
 	const scoresCollectionRef = collection(db, "scores");
 
@@ -26,7 +26,7 @@ export default function Scoreboard() {
 	const ptScores = () => {
 		setGameScores(_.filter(scores, {game: 'Proto-Type'}));
 		setSelected('Proto-Type');
-		setSelectedWords(25)
+		setSelectedWords('all')
 	}
 
 	const reactionScores = () => {
@@ -44,6 +44,11 @@ export default function Scoreboard() {
 		setSelected('Simone');
 	}
 
+	const allWords = () => {
+		setGameScores(_.filter(scores, {game: 'Proto-Type'}));
+		setSelectedWords('all');
+	}
+	
 	const twentyFive = () => {
 		setGameScores(_.filter(scores, {words: 25}));
 		setSelectedWords(25);
@@ -87,6 +92,7 @@ export default function Scoreboard() {
 
 							{ selected === "Proto-Type" ? 
 								<ButtonGroup>
+									<Button onClick={ allWords } variant={ selectedWords === 'all' ? "primary" : "outline-primary" } style={{ borderRight: '1px' }} >All</Button>
 									<Button onClick={ twentyFive } variant={ selectedWords === 25 ? "primary" : "outline-primary" } style={{ borderRight: '1px' }} >25</Button>
 									<Button onClick={ fifty } variant={ selectedWords === 50 ? "primary" : "outline-primary" }>50</Button>
 									<Button onClick={ hundred } variant={ selectedWords === 100 ? "primary" : "outline-primary" } style={{ borderLeft: '1px' }}>100</Button>
