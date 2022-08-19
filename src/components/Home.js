@@ -80,19 +80,6 @@ export default function Home() {
 						</Button>
 					</Link>
 
-					<Link to='/aim-train'>
-						<Button
-							id='aim-train'
-							variant='dark'
-							className='game'
-						>
-							<div className='game-caption'>
-								<h3 style={{ margin: '0' }}><strong>Aim Train</strong></h3>
-								<p className='caption'>Master your precision and speed.</p>
-							</div>
-						</Button>
-					</Link>
-
 					<Link to='/proto-type'>
 						<Button
 							id='proto-type'
@@ -102,6 +89,32 @@ export default function Home() {
 							<div className='game-caption'>
 								<h3 style={{ margin: '0' }}><strong>Proto-Type</strong></h3>
 								<p className='caption'>Up your words per minute.</p>
+							</div>
+						</Button>
+					</Link>
+
+					<Link to="/NewWord">
+						<Button 
+							id='new-word'
+							variant="dark"
+							className="game"
+						>
+						<div className='game-caption'>
+							<h3 style={{ margin: '0'}}><strong>New Word</strong></h3>
+							<p className='caption'>Become quick-witted</p>
+						</div>
+						</Button>
+					</Link>
+
+					<Link to='/aim-train'>
+						<Button
+							id='aim-train'
+							variant='dark'
+							className='game'
+						>
+							<div className='game-caption'>
+								<h3 style={{ margin: '0' }}><strong>Aim Train</strong></h3>
+								<p className='caption'>Master your precision and speed.</p>
 							</div>
 						</Button>
 					</Link>
@@ -119,18 +132,7 @@ export default function Home() {
 						</Button>
 					</Link>
 
-					<Link to="/NewWord">
-						<Button 
-						id='NewWord'
-						variant="dark"
-						className="game square"
-						>
-						<div className='game-caption square'>
-							<h3 style={{ margin: '0'}}><strong>New Word</strong></h3>
-							<p className='caption'>Become quick-witted</p>
-						</div>
-						</Button>
-					</Link>
+					
 				</div>
 				<br />
 				<br />

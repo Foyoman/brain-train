@@ -169,6 +169,18 @@ a {
   background-repeat: no-repeat;
 }
 
+#new-word {
+  width: 907px;
+  background-image: url(./images/new-word.png);
+  background-repeat: no-repeat;
+  background-color: white;
+}
+
+#new-word:hover {
+  background-image: url(./images/new-word.gif);
+  background-repeat: no-repeat;
+}
+
 header {
   background-image: url(./images/wallpaper.png);
   background-size: cover;
@@ -325,6 +337,10 @@ header {
   #proto-type {
     width: 300px;
     background-repeat: no-repeat;
+  }
+
+  #new-word {
+    width: 300px;
   }
 
   .no-display-mobile {
