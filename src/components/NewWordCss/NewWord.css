@@ -1,17 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&display=swap');
 
-.container {
+.font {
     width: 100%;
     text-align: center;
     font-family: 'DynaPuff', cursive;
 }
 
-#container {
-    max-height: 80vh;
-    max-width: 50vw;
-    font-size: 1.5em;
-    font-family: 'DynaPuff', cursive;
-}
 .TwoEm {
     font-size: 2.5em;
 }

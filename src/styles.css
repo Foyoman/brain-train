@@ -181,6 +181,12 @@ a {
   background-repeat: no-repeat;
 }
 
+#shrek {
+  width: 907px;
+  background-image: url(./images/shrek.png);
+  background-size: cover;
+}
+
 header {
   background-image: url(./images/wallpaper.png);
   background-size: cover;
@@ -340,6 +346,10 @@ header {
   }
 
   #new-word {
+    width: 300px;
+  }
+
+  #shrek {
     width: 300px;
   }
 

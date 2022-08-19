@@ -213,7 +213,7 @@ const NewWord = () => {
 
     const Word = () => {
         return (
-            <Container >
+            <Container className='font' >
                 <p> {time}: seconds</p>
                 <p>Your Word is..</p>
                     <h1 className="wordDisplay">{word}</h1>
@@ -228,7 +228,7 @@ const NewWord = () => {
     }
 
     return (
-        <Container id="container" className="col-6 justify-content-center mt-4">
+        <Container id="container" className="col-6 justify-content-center mt-4 font">
             <Card >   
                 <Container id="inner-container">
                 <h1 className="TwoEm">New Word</h1>

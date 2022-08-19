@@ -263,7 +263,7 @@ const ProtoType = () => {
 			onClick={blurInput}	
 		>
 			<Container
-				className="d-flex mt-5 align-items-center justify-content-center"
+				className="d-flex mt-5 align-items-center justify-content-center text-center"
 				style={{ minHeight: "20vh", marginTop: "1em" }}
 			>
 				<div className='w-100'>
@@ -271,11 +271,15 @@ const ProtoType = () => {
 						<Card.Body>
 							<h1>⌨️ Proto-Type</h1>
 							<br />
-							<ButtonGroup className='mb-3'>
-								<Button onClick={ setWordCount } value='25' variant={ words === 25 ? 'secondary' : 'outline-secondary' } style={{ borderRight: '1px' }}>25</Button>
-								<Button onClick={ setWordCount } value='50' variant={ words === 50 ? 'secondary' : 'outline-secondary' }>50</Button>
-								<Button onClick={ setWordCount } value='100' variant={ words === 100 ? 'secondary' : 'outline-secondary' } style={{ borderLeft: '1px' }}>100</Button>
-							</ButtonGroup>
+
+							<div className='d-flex justify-content-between'>
+								<h3>{ elapsed }</h3>
+								<ButtonGroup className='mb-3'>
+									<Button onClick={ setWordCount } value='25' variant={ words === 25 ? 'secondary' : 'outline-secondary' } style={{ borderRight: '1px' }}>25</Button>
+									<Button onClick={ setWordCount } value='50' variant={ words === 50 ? 'secondary' : 'outline-secondary' }>50</Button>
+									<Button onClick={ setWordCount } value='100' variant={ words === 100 ? 'secondary' : 'outline-secondary' } style={{ borderLeft: '1px' }}>100</Button>
+								</ButtonGroup>
+							</div>
 
 							<form onSubmit={_handleSubmit}>
 								<input id='words-input' ref={inputRef} type="text" autoFocus onChange={_handleInput} value={input} autoComplete="off" />
@@ -343,6 +347,9 @@ const ProtoType = () => {
 					</Card>
 				</div>
 			</Container>
+			{ input === 'sei54' ? 
+				<h2 className='text-center' style={{padding: '2em'}}>Thank you Joel 💕 Thank you Loden 😍 And thanks to the rest of the class for being so cool 😎</h2>
+			: "" }
 		</div>
 	);
 };

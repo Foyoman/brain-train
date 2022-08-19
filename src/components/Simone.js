@@ -26,14 +26,14 @@ export default function Simone() {
 	const yellow = useRef(null);
 	const green = useRef(null);
 
-	const yellowRe = new Audio('/re.wav')
-	yellowRe.playbackRate = 4
-	const blueMi = new Audio('/mi.wav')
-	blueMi.playbackRate = 4
-	const greenFa = new Audio('/fa.wav')
-	greenFa.playbackRate = 4
-	const redSol = new Audio('/sol.wav')
-	redSol.playbackRate = 4
+	// const yellowRe = new Audio('/re.mp3')
+	// yellowRe.playbackRate = 6
+	// const blueMi = new Audio('/mi.mp3')
+	// blueMi.playbackRate = 6
+	// const greenFa = new Audio('/fa.mp3')
+	// greenFa.playbackRate = 6
+	// const redSol = new Audio('/sol.mp3')
+	// redSol.playbackRate = 6
 
 	const postScore = async () => {
 		await addDoc(scoresCollectionRef, { 
@@ -46,6 +46,7 @@ export default function Simone() {
 	}
 
 	const reset = () => {
+		setFlashSpeed(250);
 		setSequence([]);
 		setTime(0);
 		setRunningA(false);
@@ -90,39 +91,39 @@ export default function Simone() {
 					setRunningB(false);
 					setTurn('user');
 					blue.current.blur();
-					blueMi.load();
+					// blueMi.load();
 					red.current.blur();
-					redSol.load();
+					// redSol.load();
 					yellow.current.blur();
-					yellowRe.load();
+					// yellowRe.load();
 					green.current.blur();
-					greenFa.load();
+					// greenFa.load();
 				} else if (j % 2 === 0) {
 					blue.current.blur();
-					blueMi.load();
+					// blueMi.load();
 					red.current.blur();
-					redSol.load();
+					// redSol.load();
 					yellow.current.blur();
-					yellowRe.load();
+					// yellowRe.load();
 					green.current.blur();
-					greenFa.load();
+					// greenFa.load();
 					j++;
 				} else if (j % 2 !== 0) {
 					if (sequence[i] === "blue") {
 						blue.current.focus();
-						blueMi.play();
+						// blueMi.play();
 					}
 					if (sequence[i] === "red") {
 						red.current.focus();
-						redSol.play();
+						// redSol.play();
 					}
 					if (sequence[i] === "yellow") {
 						yellow.current.focus();
-						yellowRe.play();
+						// yellowRe.play();
 					}
 					if (sequence[i] === "green") {
 						green.current.focus();
-						greenFa.play();
+						// greenFa.play();
 					}
 					i++;
 					j++;
@@ -154,14 +155,11 @@ export default function Simone() {
 	}
 
 	const handleClick = (e) => {
-		if (sequence.length >= 6) {
-			setFlashSpeed(200);
-		}
-		if (sequence.length >= 9) {
-			setFlashSpeed(150);
+		if (sequence.length >= 8) {
+			setFlashSpeed(210);
 		}
 		if (sequence.length >= 12) {
-			setFlashSpeed(100);
+			setFlashSpeed(170);
 		}
 
 		blue.current.blur();
@@ -169,18 +167,27 @@ export default function Simone() {
 		yellow.current.blur();
 		green.current.blur();
 
-		if (e.target.value === 'blue') {
-			blueMi.play();
-		} else if (e.target.value === 'red') {
-			redSol.play();
-		} else if (e.target.value === 'yellow') {
-			yellowRe.play();
-		} else if (e.target.value === 'green') {
-			greenFa.play();
-		}
-		
-		
-		
+		// if (e.target.value === 'blue') {
+		// 	blueMi.play();
+		// 	redSol.load();
+		// 	yellowRe.load();
+		// 	greenFa.load();
+		// } else if (e.target.value === 'red') {
+		// 	redSol.play();
+		// 	blueMi.load();
+		// 	yellowRe.load();
+		// 	greenFa.load();
+		// } else if (e.target.value === 'yellow') {
+		// 	yellowRe.play();
+		// 	redSol.load();
+		// 	blueMi.load();
+		// 	greenFa.load();
+		// } else if (e.target.value === 'green') {
+		// 	greenFa.play();
+		// 	redSol.load();
+		// 	yellowRe.load();
+		// 	blueMi.load();
+		// }
 		
 		setUserSequence([...userSequence, e.target.value]);
 		if (JSON.stringify(sequence.slice(0, userSequence.length + 1)) == JSON.stringify([...userSequence, e.target.value])) {
@@ -223,8 +230,6 @@ export default function Simone() {
 
 	const nothing = () => {}
 
-
-	// debugger
 	return (
 		<Container 
 				className="d-flex align-items-center justify-content-center"

@@ -132,11 +132,24 @@ export default function Home() {
 						</Button>
 					</Link>
 
+					<a href="https://5b40-61-69-254-170.au.ngrok.io/">
+						<Button 
+							id='shrek'
+							variant="dark"
+							className="game"
+						>
+						<div className='game-caption'>
+							<h3 style={{ margin: '0'}}><strong>Shrenekt Four</strong></h3>
+							<p className='caption'>Become slow-witted</p>
+						</div>
+						</Button>
+					</a>
+
 					
 				</div>
 				<br />
 				<br />
-				<div className='w-100'>
+				<div className='w-100 text-center'>
 					<Card>
 						<Card.Body>
 							<h2>All-Time Leaders</h2>
@@ -172,7 +185,7 @@ export default function Home() {
 									<tr>
 										<td>{ newWordUser }</td>
 										<td>New Word</td>
-										<td>{ newWordScore }words</td>
+										<td>{ newWordScore } words</td>
 									</tr>
 								</tbody>
 							</Table>
