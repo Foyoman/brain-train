@@ -228,7 +228,7 @@ const NewWord = () => {
     }
 
     return (
-        <Container id="container col-lg-6 " className="justify-content-center mt-4">
+        <Container id="container" className="col-6 justify-content-center mt-4">
             <Card >   
                 <Container id="inner-container">
                 <h1 className="TwoEm">New Word</h1>
@@ -241,7 +241,7 @@ const NewWord = () => {
                 <div className="moveBtnDisplayUp">
                     <form onSubmit={ _showWords }>
                         <button className='btn '>{collectionOfWordsTyped.length - 1}</button>
-                        <p>{collectionOfWordsTyped + ''}</p>
+                        <p>{collectionOfWordsTyped.join(' ')}</p>
                     </form>
                     { finalScore ? <button className="btn btn-warning OneFiveEm " onClick={ evaluateResult }> Log Score <p>{finalScore}</p></button>  : '' }
                 </div>
