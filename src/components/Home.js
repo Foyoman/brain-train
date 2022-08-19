@@ -93,7 +93,7 @@ export default function Home() {
 						</Button>
 					</Link>
 
-					<Link to="/NewWord">
+					<Link to="/new-word">
 						<Button 
 							id='new-word'
 							variant="dark"
