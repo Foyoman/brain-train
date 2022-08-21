@@ -171,17 +171,3 @@ export default function Scoreboard() {
 		</Container>
 	)
 }
-
-
-// { scores.map((score) => { return 
-// 	<td>{ score.game }</td>
-// 	<td>{ score.score }</td>
-// 	<td>{ score.timer }</td>
-// 	<td>{ score.user }</td>
-// }) }
-
-// const sortedUID = _(people).sortBy('uid');
-
-// .then(() => {debugger});
-
-// _.filter(scores, {game: 'proto-type'})

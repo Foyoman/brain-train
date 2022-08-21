@@ -56,7 +56,7 @@ export default function Home() {
 					<p>Welcome to Brain Train! Your hub for the daily mental exercise your brain needs.</p>
 				</div>
 			</header>
-			<Container className='mt-4 mb-5' style={{ maxWidth: '931px' }}>
+			<Container className='mt-4 mb-5 text-center' style={{ maxWidth: '931px' }}>
 
 				<div 
 					className='games'
@@ -131,25 +131,10 @@ export default function Home() {
 							</div>
 						</Button>
 					</Link>
-
-					<a href="https://5b40-61-69-254-170.au.ngrok.io/">
-						<Button 
-							id='shrek'
-							variant="dark"
-							className="game"
-						>
-						<div className='game-caption'>
-							<h3 style={{ margin: '0'}}><strong>Shrenekt Four</strong></h3>
-							<p className='caption'>Become slow-witted</p>
-						</div>
-						</Button>
-					</a>
-
-					
 				</div>
 				<br />
 				<br />
-				<div className='w-100 text-center'>
+				<div className='text-center' style={{ boxSizing: 'border-box', maxWidth: '100%' }}>
 					<Card>
 						<Card.Body>
 							<h2>All-Time Leaders</h2>

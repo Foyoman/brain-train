@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Container, Card, Button } from 'react-bootstrap'
 import '../styles.css'
-import _, { set } from 'lodash';
+import _ from 'lodash';
 import { db } from '../firebase'
 import { collection, addDoc } from "firebase/firestore";
 import { useAuth } from '../contexts/AuthContext'
@@ -16,7 +16,6 @@ export default function Simone() {
 	const [runningA, setRunningA] = useState(false);
 	const [runningB, setRunningB] = useState(false);
 	const [userSequence, setUserSequence] = useState([]);
-	const [pause, setPause] = useState(false);
 	const [turn, setTurn] = useState('simone');
 	const [finalScore, setFinalScore] = useState(0);
 	const [flashSpeed, setFlashSpeed] = useState(250);
@@ -25,15 +24,6 @@ export default function Simone() {
 	const red = useRef(null);
 	const yellow = useRef(null);
 	const green = useRef(null);
-
-	// const yellowRe = new Audio('/re.mp3')
-	// yellowRe.playbackRate = 6
-	// const blueMi = new Audio('/mi.mp3')
-	// blueMi.playbackRate = 6
-	// const greenFa = new Audio('/fa.mp3')
-	// greenFa.playbackRate = 6
-	// const redSol = new Audio('/sol.mp3')
-	// redSol.playbackRate = 6
 
 	const postScore = async () => {
 		await addDoc(scoresCollectionRef, { 
@@ -91,39 +81,27 @@ export default function Simone() {
 					setRunningB(false);
 					setTurn('user');
 					blue.current.blur();
-					// blueMi.load();
 					red.current.blur();
-					// redSol.load();
 					yellow.current.blur();
-					// yellowRe.load();
 					green.current.blur();
-					// greenFa.load();
 				} else if (j % 2 === 0) {
 					blue.current.blur();
-					// blueMi.load();
 					red.current.blur();
-					// redSol.load();
 					yellow.current.blur();
-					// yellowRe.load();
 					green.current.blur();
-					// greenFa.load();
 					j++;
 				} else if (j % 2 !== 0) {
 					if (sequence[i] === "blue") {
 						blue.current.focus();
-						// blueMi.play();
 					}
 					if (sequence[i] === "red") {
 						red.current.focus();
-						// redSol.play();
 					}
 					if (sequence[i] === "yellow") {
 						yellow.current.focus();
-						// yellowRe.play();
 					}
 					if (sequence[i] === "green") {
 						green.current.focus();
-						// greenFa.play();
 					}
 					i++;
 					j++;
@@ -166,28 +144,6 @@ export default function Simone() {
 		red.current.blur();
 		yellow.current.blur();
 		green.current.blur();
-
-		// if (e.target.value === 'blue') {
-		// 	blueMi.play();
-		// 	redSol.load();
-		// 	yellowRe.load();
-		// 	greenFa.load();
-		// } else if (e.target.value === 'red') {
-		// 	redSol.play();
-		// 	blueMi.load();
-		// 	yellowRe.load();
-		// 	greenFa.load();
-		// } else if (e.target.value === 'yellow') {
-		// 	yellowRe.play();
-		// 	redSol.load();
-		// 	blueMi.load();
-		// 	greenFa.load();
-		// } else if (e.target.value === 'green') {
-		// 	greenFa.play();
-		// 	redSol.load();
-		// 	yellowRe.load();
-		// 	blueMi.load();
-		// }
 		
 		setUserSequence([...userSequence, e.target.value]);
 		if (JSON.stringify(sequence.slice(0, userSequence.length + 1)) == JSON.stringify([...userSequence, e.target.value])) {

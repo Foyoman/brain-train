@@ -181,7 +181,7 @@ const ProtoType = () => {
 		} 
 	}
 
-	if (quote.split(' ')[words - 1] === input) {
+	if (quote.split(' ')[words - 1] === input && rawInput.split(' ').length === quote.split(' ').length) {
 		setInput('');
 		setGameState('results');
 		setAccuracy((chars / strokes * 100).toFixed(2));
@@ -297,7 +297,7 @@ const ProtoType = () => {
 																	className={ rawInput.trim().split(' ')[i][j] !== quote.split(' ')[i][j] ? 'red' : j > quote.split(' ')[i].length ? "red" : 'green' }
 																>
 																	{ letter }
-																</span>
+																</span> 
 															)
 														}) }{" "}
 													</span>

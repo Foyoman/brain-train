@@ -262,18 +262,6 @@ header {
   color: grey;
 }
 
-
-/* #caret {
-  width: 2px;
-  height: 1.5rem;
-  background: var(--caret-color);
-  animation-name: caretFlash;
-  animation-iteration-count: infinite;
-  animation-duration: 1s;
-  position: absolute;
-  transition: 0.05s;
-} */
-
 .hidden {
   display: none !important;
 }
@@ -284,16 +272,31 @@ header {
   font-weight: 550;
 }
 
-
-@media only screen and (max-width: 600px) {
-  .App {
-    max-width: 600px !important;
-  }
-
+@media only screen and (max-width: 937px) {
   .games {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  #aim-train {
+    width: 300px;
+    background-repeat: no-repeat;
+  }
+
+  #proto-type {
+    width: 300px;
+    background-repeat: no-repeat;
+  }
+
+  #new-word {
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .App {
+    max-width: 600px !important;
   }
 
   .target {
@@ -333,24 +336,6 @@ header {
   #header > p {
     font-size: 16px;
     padding: 0 2em;
-  }
-
-  #aim-train {
-    width: 300px;
-    background-repeat: no-repeat;
-  }
-
-  #proto-type {
-    width: 300px;
-    background-repeat: no-repeat;
-  }
-
-  #new-word {
-    width: 300px;
-  }
-
-  #shrek {
-    width: 300px;
   }
 
   .no-display-mobile {
