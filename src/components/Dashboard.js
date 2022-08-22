@@ -60,8 +60,8 @@ export default function Dashboard() {
 				</Card>
 				<br />
 
-				<h3>Your High Scores</h3>
-				<Table className='mt-3'>
+				<h3 className="text-center">Your High Scores</h3>
+				<Table className='mt-3 text-center'>
 					<thead>
 						<tr>
 							<th>Game</th>

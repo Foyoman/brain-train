@@ -272,6 +272,10 @@ header {
   font-weight: 550;
 }
 
+.mobile-score-buttons {
+  display: none;
+}
+
 @media only screen and (max-width: 937px) {
   .games {
     display: flex;
@@ -295,6 +299,14 @@ header {
 }
 
 @media only screen and (max-width: 600px) {
+  .mobile-score-buttons {
+    display: inline;
+  }
+
+  .mobile-score-buttons > button {
+    margin: 0 2px 2px 0;
+  }
+
   .App {
     max-width: 600px !important;
   }
@@ -317,9 +329,11 @@ header {
   .what {
     max-width: 250px;
   }
+
   .simone-container {
     max-height: 400px !important;
   }
+  
   .simone-circle {
     position: relative;
     max-width: 400px !important;

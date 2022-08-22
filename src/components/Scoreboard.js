@@ -75,14 +75,14 @@ export default function Scoreboard() {
 
 	return (
 		<Container 
-				className="d-flex align-items-center justify-content-center"
+				className="d-flex align-items-center justify-content-center text-center"
 				style={{ marginTop: "2em" }}
 		>
 			<div className='w-100' style={{ maxWidth: '800px' }}>
 				<Card>
 					<Card.Body>
 						<div className='d-flex' style={{ justifyContent: 'space-between' }}>
-							<ButtonGroup>
+							<ButtonGroup className='no-display-mobile'>
 								<Button onClick={ atScores } variant={ selected === "Aim Train" ? "primary" : "outline-primary" } style={{ borderRight: '1px' }} >Aim Train</Button>
 								<Button onClick={ ptScores } variant={ selected === "Proto-Type" ? "primary" : "outline-primary" }>Proto-Type</Button>
 								<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button>
@@ -90,8 +90,16 @@ export default function Scoreboard() {
 								<Button onClick={ newWordScores } variant={ selected === "New Word" ? "primary" : "outline-primary" }>New Word</Button>
 							</ButtonGroup>
 
+							<div className='mobile-score-buttons'>
+								<Button onClick={ atScores } variant={ selected === "Aim Train" ? "primary" : "outline-primary" }>Aim Train</Button>
+								<Button onClick={ ptScores } variant={ selected === "Proto-Type" ? "primary" : "outline-primary" }>Proto-Type</Button>
+								<Button onClick={ reactionScores } variant={ selected === "Reaction.js" ? "primary" : "outline-primary" }>Reaction.js</Button>
+								<Button onClick={ simoneScores } variant={ selected === "Simone" ? "primary" : "outline-primary" }>Simone</Button>
+								<Button onClick={ newWordScores } variant={ selected === "New Word" ? "primary" : "outline-primary" }>New Word</Button>
+							</div>
+
 							{ selected === "Proto-Type" ? 
-								<ButtonGroup>
+								<ButtonGroup className='no-display-mobile'>
 									<Button onClick={ allWords } variant={ selectedWords === 'all' ? "primary" : "outline-primary" } style={{ borderRight: '1px' }} >All</Button>
 									<Button onClick={ twentyFive } variant={ selectedWords === 25 ? "primary" : "outline-primary" } style={{ borderRight: '1px' }} >25</Button>
 									<Button onClick={ fifty } variant={ selectedWords === 50 ? "primary" : "outline-primary" }>50</Button>
@@ -114,9 +122,9 @@ export default function Scoreboard() {
 											: "" 
 										}
 									</th>
-									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Accuracy</th> : "" : "" }
-									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Time</th> : "" : "" }
-									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th>Words</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th  className='no-display-mobile'>Accuracy</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th  className='no-display-mobile'>Time</th> : "" : "" }
+									{ gameScores[0] ? gameScores[0].game === "Proto-Type" ? <th  className='no-display-mobile'>Words</th> : "" : "" }
 									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th className='no-display-mobile'>Avg. Speed</th> : "" : "" }
 									{ gameScores[0] ? gameScores[0].game === "Aim Train" ? <th  className='no-display-mobile'>Accuracy</th> : "" : "" }
 									<th>User</th>
@@ -133,7 +141,7 @@ export default function Scoreboard() {
 											</td>
 											{ gameScores[0] ? 
 												gameScores[0].game === "Proto-Type" ? 
-												<td>{ score.accuracy }%</td> : 
+												<td className='no-display-mobile'>{ score.accuracy }%</td> : 
 												"" : "" 
 											}
 											{ gameScores[0] ? 
