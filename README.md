@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Brain Train - games for mental stimulation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Click [_here_](https://the-brain-train.web.app/) to train your brain!
 
-## Available Scripts
+---------------------
 
-In the project directory, you can run:
+Test your reaction speed, train your memory, expand your vocabulary, up your typing speed, and improve your mouse aim, precision and speed!
 
-### `npm start`
+The Brain Train is your hub for mental stimuli and semi-productive entertainment. Featuring 5 games, every game was designed to tickle the mind and get those brain juices flowing. The main idea for this project was to test React's capabilities and the power of state to produce a highly interactive web-page where every user input has a reaction.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Simone: Test your memory! In this game, you will see four different coloured buttons. Starting the game, a random sequence will highlight each button. The aim of the game is to let Simone show you a sequence of colours, and repeat the sequence that you see. For each successful round, one colour gets added to the sequence. See how long you can last! 
+- Proto-Type: A typing game heavily insipred by the popular typing speed tester monkey-type. Unlike many other type testers, Proto-Type aims to test your typing speed in a way that shows you what you're typing and the errors you've made dynamically, ***LIVE*** as you type. 
+- New Word: Start with a random word, and think of a new word starting with the last letter! The chain keeps going as long as you can think of a new word to type, so think quick!
+- Aim Train: It's target practice! Test how good you are with your mouse with Aim Train. A single target will be displayed on the screen, and on each click it's position will be randomised. This game keeps track of the speed at which you can click each target, and how precise you are with your clicks, as it tracks each click you miss. Your final score is then applied to a multiplier that is calculated depending on how quick and accurate you are.
+- Reaction.js: A simple reaction speed tester. Click start, then at a random interval, the button will turn green. ***QUICK, CLICK!*** Your reaction speed is calculated based on how quickly you were able to click from when the button turned green. Simple. Go three rounds to get an average.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can create an account to log your scores in each game you play or you can remain anonymous and play without making an account.
 
-### `npm test`
+-----------------
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Techstack
+- React.js
+- Firebase
