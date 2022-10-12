@@ -21,3 +21,4 @@ You can create an account to log your scores in each game you play or you can re
 ## Techstack
 - React.js
 - Firebase
+- Bootstrap
